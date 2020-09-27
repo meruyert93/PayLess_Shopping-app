@@ -1,5 +1,5 @@
 {
-  "name": "Angebot Vergleich",
+  "name": "AngebotVergleich",
   "version": "1.0.0",
   "description": "This is a website for  Angebot Vergleich",
   "main": "index.html",
@@ -12,5 +12,10 @@
   "license": "ISC",
   "devDependencies": {
     "lite-server": "^2.3.0"
+  },
+  "dependencies": {
+    "bootstrap": "^4.5.2",
+    "jquery": "^3.5.1",
+    "popper.js": "^1.16.1"
   }
 }
