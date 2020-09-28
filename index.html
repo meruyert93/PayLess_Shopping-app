@@ -9,17 +9,38 @@
 
  <!-- Bootstrap CSS -->
  <link rel="stylesheet" href="node_modules/bootstrap/dist/css/bootstrap.min.css">
-    <title>Ristorante Con Fusion</title>
+    <title>Angebot Vergleich</title>
 </head>
 
 <body>
+    <nav class="navbar navbar-dark navbar-expand-sm bg-dark fixed-top">
+        <div class="container">
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#Navbar">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <a class="navbar-brand mr-auto" href="#">Logo</a>
+            <div class="collapse navbar-collapse" id="Navbar">
+                <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
+                    <li class="nav-item active"><a class="nav-link" href="#">Homepage</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#">Supermarket list</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#">Useful links</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#">Supermarkets near me</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#">Shopping list</a></li>
+                </ul>
 
-    <header>
+                <form class="form-inline my-2 my-lg-0">
+                    <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+                    <button class="btn btn-outline-light my-2 my-sm-0" type="submit">Search</button>
+                  </form>
+            </div>
+        </div>
+    </nav>
+    <header class="jumbotron">
         <div>
             <div>
                 <div>
-                    <h1>Ristorante con Fusion</h1>
-                    <p>We take inspiration from the World's best cuisines, and create a unique fusion experience. Our lipsmacking creations will tickle your culinary senses!</p>
+                    <h1 class="display-4">Angebot Vergleich</h1>
+                    <p class="lead">Save your money, find your discounts</p>
                 </div>
                 <div>
                 </div>
@@ -27,8 +48,8 @@
         </div>
     </header>
 
-    <div>
-        <div>
+    <div class="container">
+        <div class="row">
             <div>
                 <h3>Our Lipsmacking Culinary Creations</h3>
             </div>
@@ -39,7 +60,7 @@
         </div>
 
 
-        <div>
+        <div class="row">
             <div>
                 <h3>This Month's Promotions</h3>
             </div>
@@ -49,7 +70,7 @@
             </div>
         </div>
 
-        <div>
+        <div class="row">
             <div>
                 <h3>Meet our Culinary Specialists</h3>
             </div>
