@@ -9,11 +9,15 @@
 
  <!-- Bootstrap CSS -->
  <link rel="stylesheet" href="node_modules/bootstrap/dist/css/bootstrap.min.css">
+ <link rel="stylesheet" href="node_modules/font-awesome-animation/dist/font-awesome-animation.min.css">
+ <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+
+ <link rel="stylesheet" href="css/styles.css" >
     <title>Angebot Vergleich</title>
 </head>
 
 <body>
-    <nav class="navbar navbar-dark navbar-expand-sm bg-dark fixed-top">
+    <nav class="navbar navbar-dark navbar-expand-sm fixed-top">
         <div class="container">
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#Navbar">
                 <span class="navbar-toggler-icon"></span>
@@ -35,23 +39,50 @@
             </div>
         </div>
     </nav>
-    <header class="jumbotron">
-        <div>
-            <div>
-                <div>
-                    <h1 class="display-4">Angebot Vergleich</h1>
-                    <p class="lead">Save your money, find your discounts</p>
+    <header class="jumbotron jumbotron-fluid">
+
+        <div class="container"> 
+            <div class="row d-flex align-items-center justify-content-around">
+                <div class="col-4 col-xs-12">
+                    
+                    <h2 class="display-4">PayLess</h2>
+                    <h1>
+                        <a href="" class="typewrite" data-period="2000" data-type='[ "Save your Money", "Find your Discount"]'>
+                            <span class="wrap"></span>
+                        </a>
+                    </h1>
                 </div>
-                <div>
+                
+                <div class="col-4 col-xs-12">
+                    <i class="fa fa-cart-arrow-down fa-5x faa-passing animated faa-float animated faa-slow" aria-hidden="true"></i>
                 </div>
             </div>
         </div>
+        
     </header>
 
     <div class="container">
+
         <div class="row">
+            <div class="card" style="width: 18rem;">
+                <img class="card-img-top" src="https://media.giphy.com/media/H70Y4dmzjcifW4zKSZ/source.gif" alt="Card image cap">
+                <div class="card-body">
+                  <h5 class="card-title">Weekly offers </h5>
+                  <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                </div>
+                <ul class="list-group list-group-flush">
+                  <li class="list-group-item">Cras justo odio</li>
+                  <li class="list-group-item">Dapibus ac facilisis in</li>
+                  <li class="list-group-item">Vestibulum at eros</li>
+                </ul>
+                <div class="card-body">
+                  <a href="#" class="card-link">Card link</a>
+                  <a href="#" class="card-link">Another link</a>
+                </div>
+            </div>
+
             <div>
-                <h3>Our Lipsmacking Culinary Creations</h3>
+                <h3> </h3>
             </div>
             <div>
                 <h2>Uthappizza</h2>
@@ -126,6 +157,7 @@
 
 
         <!-- jQuery first, then Popper.js, then Bootstrap JS. -->
+        <script src="js/scripts.js" refer></script>
         <script src="node_modules/jquery/dist/jquery.slim.min.js"></script>
         <script src="node_modules/popper.js/dist/umd/popper.min.js"></script>
         <script src="node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
