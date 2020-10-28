@@ -23,32 +23,153 @@ fa-cart-arrow-down {
     font-size: larger;
 }
 
-
-.main__item {
+/* Main section */
+/* .main__item {
 	height: 431px;
 	display: flex;
 	align-items: center;
 	padding-left: 75px;
-}
-
+} */
+/* 
 .main__text span {
 	font-size: 14px;
 	text-transform: uppercase;
 	font-weight: 700;
 	letter-spacing: 4px;
 	color: #7fad39;
-}
+} */
 
-.main__text h2 {
+/* .main__text h2 {
 	font-size: 46px;
 	color: #252525;
 	line-height: 52px;
 	font-weight: 700;
 	margin: 10px 0;
-}
+} */
 
-.main__text p {
+/* .main__text p {
     margin-bottom: 35px;
     
+} */
+
+
+
+/* PASSING */
+
+@-webkit-keyframes passing {
+    0% {
+      -webkit-transform: translateX(-50%);
+      transform: translateX(-50%);
+      opacity: 0;
+    }
+  
+    50% {
+      -webkit-transform: translateX(0%);
+      transform: translateX(0%);
+      opacity: 1;
+    }
+  
+    100% {
+      -webkit-transform: translateX(50%);
+      transform: translateX(50%);
+      opacity: 0;
+    }
+  }
+  
+  @keyframes passing {
+    0% {
+      -webkit-transform: translateX(-50%);
+      transform: translateX(-50%);
+      opacity: 0;
+    }
+  
+    50% {
+      -webkit-transform: translateX(0%);
+      transform: translateX(0%);
+      opacity: 1;
+    }
+  
+    100% {
+      -webkit-transform: translateX(50%);
+      transform: translateX(50%);
+      opacity: 0;
+    }
+  }
+  
+  .faa-passing.animated,
+  .faa-passing.animated-hover:hover,
+  .faa-parent.animated-hover:hover > .faa-passing {
+    -webkit-animation: passing 2s linear infinite;
+    animation: passing 2s linear infinite;
+  }
+  
+  .faa-passing.animated.faa-fast,
+  .faa-passing.animated-hover.faa-fast:hover,
+  .faa-parent.animated-hover:hover > .faa-passing.faa-fast {
+    -webkit-animation: passing 1s linear infinite;
+    animation: passing 1s linear infinite;
+  }
+  
+  .faa-passing.animated.faa-slow,
+  .faa-passing.animated-hover.faa-slow:hover,
+  .faa-parent.animated-hover:hover > .faa-passing.faa-slow {
+    -webkit-animation: passing 3s linear infinite;
+    animation: passing 3s linear infinite;
+  }
+  
+  /* FLOAT */
+
+@-webkit-keyframes float {
+  0% {
+    -webkit-transform: translateY(0);
+    transform: translateY(0);
+  }
+
+  50% {
+    -webkit-transform: translateY(-6px);
+    transform: translateY(-6px);
+  }
+
+  100% {
+    -webkit-transform: translateY(0);
+    transform: translateY(0);
+  }
 }
 
+@keyframes float {
+  0% {
+    -webkit-transform: translateY(0);
+    transform: translateY(0);
+  }
+
+  50% {
+    -webkit-transform: translateY(-6px);
+    transform: translateY(-6px);
+  }
+
+  100% {
+    -webkit-transform: translateY(0);
+    transform: translateY(0);
+  }
+}
+
+.faa-float.animated,
+.faa-float.animated-hover:hover,
+.faa-parent.animated-hover:hover > .faa-float {
+  -webkit-animation: float 2s linear infinite;
+  animation: float 2s linear infinite;
+}
+
+.faa-float.animated.faa-fast,
+.faa-float.animated-hover.faa-fast:hover,
+.faa-parent.animated-hover:hover > .faa-float.faa-fast {
+  -webkit-animation: float 1s linear infinite;
+  animation: float 1s linear infinite;
+}
+
+.faa-float.animated.faa-slow,
+.faa-float.animated-hover.faa-slow:hover,
+.faa-parent.animated-hover:hover > .faa-float.faa-slow {
+  -webkit-animation: float 3s linear infinite;
+  animation: float 3s linear infinite;
+}

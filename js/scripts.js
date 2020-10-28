@@ -1,4 +1,4 @@
-
+//Animation text
 var TxtType = function(el, toRotate, period) {
         this.toRotate = toRotate;
         this.el = el;
@@ -55,3 +55,19 @@ var TxtType = function(el, toRotate, period) {
         css.innerHTML = ".typewrite > .wrap { border-right: 0.08em solid #fff}";
         document.body.appendChild(css);
     };
+
+
+
+//API connection
+
+const api_url = 'https://www.edeka.de/eh/service/eh/offers';
+
+fetch(api_url)
+  .then(response => response.json())
+  .then(data => console.log(data));
+
+
+// fetch(api_url);
+// const data = await response.json();
+// console.log(data);
+
