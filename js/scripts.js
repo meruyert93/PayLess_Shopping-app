@@ -60,62 +60,51 @@ var TxtType = function(el, toRotate, period) {
 
 //API connection
 const contentDiv = document.getElementById('content');
-const api_url = fetch('https://www.edeka.de/eh/service/eh/offers');
-var htmlRepresentation = "";
+const apiUrl = fetch('https://www.edeka.de/eh/service/eh/offers');
 
-api_url
+apiUrl
   .then(response => response.json())
   .then(content => {
       console.log(content);
-    
-       htmlRepresentation = `
-        <div class="card" style="width: 18rem;">
-            <img class="card-img-top" src=${content.docs[0].bild_app} alt="Card image cap">
-            <div class="card-body">
-                <h5 class="card-title">${content.docs[0].titel}</h5>
-                <p class="card-text">${content.docs[0].beschreibung}</p>
-            </div>
-            <ul class="list-group list-group-flush">
-                <li class="list-group-item font-weight-bold">Price: <span class="text-danger h4">${content.docs[0].preis} Euro</span></spand></li>
-                <li class="list-group-item text-muted">Basic Price: <span class="h6">${content.docs[0].basicPrice}</span></spand></li>
-            </ul>
-            <div class="card-body">
+      let htmlRepresentation = "";  
+      content.docs.forEach(element => {
+        htmlRepresentation += `
+            <div class="card" style="width: 18rem;">
+                <img class="card-img-top" src=${element.bild_app} alt="Card image cap">
+                <div class="card-body">
+                <h5 class="card-title">${element.titel}</h5>
+                <p class="card-text">${element.beschreibung}</p>
+                </div>
+                <ul class="list-group list-group-flush">
+                <li class="list-group-item font-weight-bold">Price: <span class="text-danger h4">${element.preis} Euro</span></spand></li>
+                <li class="list-group-item text-muted">Basic Price: <span class="text-danger h4">${element.basicPrice} Euro</span></spand></li>
+                </ul>
+                <div class="card-body">
                 <a href="#" class="card-link">Add to Basket</a>
-            </div>
-        </div>
+                </div>
+            </div> 
       `;
+      });
+
       return htmlRepresentation;
   })
   .then(htmlRepresetation =>{
-        // for( var i = 0; i <content.length; i++) {
-            contentDiv.innerHTML = htmlRepresetation;
-        // }
-            console.log(htmlRepresetation);
-    })
+        contentDiv.innerHTML = htmlRepresetation;
+        console.log(htmlRepresetation);
+    });
 
 
-// fetch(api_url);
-// const data = await response.json();
-// console.log(data);
-
-// const contentDiv = document.getElementById('content');
-// const apiPromise = fetch("https://...")
-
-// // apiPromise
-//     .then(result => result.json())
-//     .then(content => {
-//         console.log(content);
-//         const htmlRepresetation = `
-//         <ul>
-//             <li>Name: ${content.name}</li>
-//             <li>Birthday: ${content.birthday} </li>
-//             <li> Favourite hobby: ${content.favouriteHobby}</li>
-//         </ul>
-//         `;
-//         return htmlRepresetation;
-
-//     })
-//     .then(htmlRepresetation =>{
-//         contentDiv.innerHTML = htmlRepresetation;
-//         console.log(htmlRepresetation);
-//     })
+//     <div class="card" style="width: 18rem;">
+    //     <img class="card-img-top" src=${element.bild_app} alt="Card image cap">
+    //     <div class="card-body">
+    //         <h5 class="card-title">${element.titel}</h5>
+    //         <p class="card-textt">${element.beschreibung}</p>
+    //     </div>
+    //     <ul class="list-group list-group-flush">
+    //         <li class="list-group-item font-weight-bold">Price: <span class="text-danger h4">${element.preis} Euro</span></spand></li>
+    //         <li class="list-group-item text-muted">Basic Price: <span class="h6">${element.basicPrice}</span></spand></li>
+    //     </ul>
+    //     <div class="card-body">
+    //         <a href="#" class="card-link">Add to Basket</a>
+    //     </div>
+//      </div>
