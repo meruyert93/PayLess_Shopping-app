@@ -69,20 +69,27 @@ apiUrl
       let htmlRepresentation = "";  
       content.docs.forEach(element => {
         htmlRepresentation += `
-            <div class="card" style="width: 18rem;">
-                <img class="card-img-top" src=${element.bild_app} alt="Card image cap">
+        
+ 
+
+        <div class="item">
+            <div class="card h-100" style="width: 18rem;">
+                <img src=${element.bild_app} class="card-img-top"  alt="Card image cap">
                 <div class="card-body">
                 <h5 class="card-title">${element.titel}</h5>
                 <p class="card-text">${element.beschreibung}</p>
                 </div>
                 <ul class="list-group list-group-flush">
                 <li class="list-group-item font-weight-bold">Price: <span class="text-danger h4">${element.preis} Euro</span></spand></li>
-                <li class="list-group-item text-muted">Basic Price: <span class="text-danger h4">${element.basicPrice} Euro</span></spand></li>
+                <li class="list-group-item text-muted">Basic Price: <span class="text-danger">${element.basicPrice} Euro</span></spand></li>
                 </ul>
                 <div class="card-body">
                 <a href="#" class="card-link">Add to Basket</a>
                 </div>
-            </div> 
+            </div>
+        </div>
+       
+
       `;
       });
 
@@ -90,9 +97,67 @@ apiUrl
   })
   .then(htmlRepresetation =>{
         contentDiv.innerHTML = htmlRepresetation;
+
+                //Owl Carousel Creation
+                $('.owl-carousel').owlCarousel({
+                    autoplay: true,
+                    autoplayHoverPause: true,
+                    margin: 100,
+                    stagePadding: 10,
+                    nav: true,
+                    loop: true,
+                    navText: [
+                        "<i class='fa fa-chevron-left fa-2x'></i>",
+                        "<i class='fa fa-chevron-right fa-2x'></i>"
+                     ],
+                    responsive:{
+                        0: {
+                            items: 1,
+                            // dots:false
+                        }, 
+                        485: {
+                            items: 2,
+                            // dots: false
+                        },
+                        728: {
+                            items:3,
+                            // dots:true
+                        },
+                        960: {
+                            items:3,
+                            // loop: true,
+                            
+                        },
+                        1200: {
+                            items:4,
+                            // dots:true,
+                            // loop: false,
+                            // nav: true,
+                        }
+                    }
+                    
+                });
+
+                $('owl-carousel').on('mousewheel', 'owl-stage', function(e){
+                    if(e.deltaY>0) {
+                        $('.owl-carousel').trigger('next-owl');
+                    } else  {
+                        $('owl-carousel').trigger('prev.owl');
+                    }
+                    e.preventDefault();
+                });
+
         console.log(htmlRepresetation);
     });
 
+
+  //Owl Carousel Creation
+//   var owl = $('.owl-carousel');
+//     owl.trigger('refresh.owl.carousel');
+   
+
+
+    
 
 //     <div class="card" style="width: 18rem;">
     //     <img class="card-img-top" src=${element.bild_app} alt="Card image cap">

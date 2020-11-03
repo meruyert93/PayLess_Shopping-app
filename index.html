@@ -12,9 +12,30 @@
  <!-- Font Awesome -->
  <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
  <!--Owl Carousel-->
- <link rel="stylesheet" href="css/owl.carousel.min.css">
- <link rel="stylesheet" href="css/font-awesome-animation.css">
+ <!-- <link rel="stylesheet" href="css/owl.carousel.min.css"> -->
+ <!-- <link rel="stylesheet" href="css/owl.carousel.min.css"> -->
  <link rel="stylesheet" href="css/styles.css" >
+ <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css" integrity="sha512-tS3S5qG0BlhnQROyJXvNjeEM4UpMXHrQfTGmbQ1gKmelCxlSEBUaxhRBj/EFTzpbP4RVSrpEikbmdJobCvhE3g==" crossorigin="anonymous" />
+ <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.theme.default.css" integrity="sha512-OTcub78R3msOCtY3Tc6FzeDJ8N9qvQn1Ph49ou13xgA9VsH9+LRxoFU6EqLhW4+PKRfU+/HReXmSZXHEkpYoOA==" crossorigin="anonymous" />
+ <link rel="stylesheet" href="css/font-awesome-animation.css">
+ <style>
+     
+    .owl-prev,
+    .owl-next {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    }
+
+    .owl-prev {
+    left: -2rem;
+    }
+
+    .owl-next {
+    right: -3rem;
+    }
+ </style>
+ 
     <title>Angebot Vergleich</title>
 </head>
 
@@ -100,93 +121,18 @@
     
     
     <div class="container mt-5 mb-5">
-        <div class="owl-carousel owl-theme">
-                <div class="ml-2 mr-2" style="background-color:#ddd">
-                    <div class="card" style="width: 18rem;">
-                        <img class="card-img-top" src="images/bag.jpg" alt="Card image cap">
-                        <div class="card-body">
-                        <h5 class="card-title">Heidelbeeren</h5>
-                        <p class="card-text">Description</p>
-                        </div>
-                        <ul class="list-group list-group-flush">
-                        <li class="list-group-item font-weight-bold">Price: <span class="text-danger h4">48 Euro</span></spand></li>
-                        <li class="list-group-item text-muted">Basic Price: <span class="text-danger h4">48 Euro</span></spand></li>
-                        </ul>
-                        <div class="card-body">
-                        <a href="#" class="card-link">Add to Basket</a>
-                        </div>
+        <div class="owl-carousel owl-theme owl-loaded" id="content">
+                <div class="item">
+                    <div class="card-group"> 
                     </div>
-                </div>
+                </div> 
 
-                <div class="ml-2 mr-2" style="background-color:#ddd">
-                    <div class="card" style="width: 18rem;">
-                        <img class="card-img-top" src="images/bag.jpg" alt="Card image cap">
-                        <div class="card-body">
-                        <h5 class="card-title">Heidelbeeren</h5>
-                        <p class="card-text">Description</p>
-                        </div>
-                        <ul class="list-group list-group-flush">
-                        <li class="list-group-item font-weight-bold">Price: <span class="text-danger h4">48 Euro</span></spand></li>
-                        <li class="list-group-item text-muted">Basic Price: <span class="text-danger h4">48 Euro</span></spand></li>
-                        </ul>
-                        <div class="card-body">
-                        <a href="#" class="card-link">Add to Basket</a>
-                        </div>
-                    </div>
-                </div>
 
-                <div class="ml-2 mr-2" style="background-color:#ddd">
-                    <div class="card" style="width: 18rem;">
-                        <img class="card-img-top" src="images/bag.jpg" alt="Card image cap">
-                        <div class="card-body">
-                        <h5 class="card-title">Heidelbeeren</h5>
-                        <p class="card-text">Description</p>
-                        </div>
-                        <ul class="list-group list-group-flush">
-                        <li class="list-group-item font-weight-bold">Price: <span class="text-danger h4">48 Euro</span></spand></li>
-                        <li class="list-group-item text-muted">Basic Price: <span class="text-danger h4">48 Euro</span></spand></li>
-                        </ul>
-                        <div class="card-body">
-                        <a href="#" class="card-link">Add to Basket</a>
-                        </div>
-                    </div>
-                </div>
 
-                <div class="ml-2 mr-2" style="background-color:#ddd">
-                    <div class="card" style="width: 18rem;">
-                        <img class="card-img-top" src="images/bag.jpg" alt="Card image cap">
-                        <div class="card-body">
-                        <h5 class="card-title">Heidelbeeren</h5>
-                        <p class="card-text">Description</p>
-                        </div>
-                        <ul class="list-group list-group-flush">
-                        <li class="list-group-item font-weight-bold">Price: <span class="text-danger h4">48 Euro</span></spand></li>
-                        <li class="list-group-item text-muted">Basic Price: <span class="text-danger h4">48 Euro</span></spand></li>
-                        </ul>
-                        <div class="card-body">
-                        <a href="#" class="card-link">Add to Basket</a>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="ml-2 mr-2" style="background-color:#ddd">
-                    <div class="card" style="width: 18rem;">
-                        <img class="card-img-top" src="images/bag.jpg" alt="Card image cap">
-                        <div class="card-body">
-                        <h5 class="card-title">Heidelbeeren</h5>
-                        <p class="card-text">Description</p>
-                        </div>
-                        <ul class="list-group list-group-flush">
-                        <li class="list-group-item font-weight-bold">Price: <span class="text-danger h4">48 Euro</span></spand></li>
-                        <li class="list-group-item text-muted">Basic Price: <span class="text-danger h4">48 Euro</span></spand></li>
-                        </ul>
-                        <div class="card-body">
-                        <a href="#" class="card-link">Add to Basket</a>
-                        </div>
-                    </div>
-                </div>
-                
+            
         </div>
+
+      
     </div>
 
 
@@ -200,15 +146,16 @@
         <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
         <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
         <!--Owl Carousel-->
-        <script src="js/owl.carousel.min.js"></script>
         <!-- <script src="js/owl.carousel.min.js"></script> -->
-        <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js" integrity="sha512-bPs7Ae6pVvhOSiIcyUClR7/q2OAsRiovw4vAkX+zJbw3ShAeeqezq50RIIcIURq7Oa20rW2n2q+fyXBNcU9lrw==" crossorigin="anonymous"></script> -->
-        <script>
-            //Owl Carousel Creation
-            $('.owl-carousel').owlCarousel();
-        </script>
+        <!-- <script src="js/owl.carousel.min.js"></script> -->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js" integrity="sha512-bPs7Ae6pVvhOSiIcyUClR7/q2OAsRiovw4vAkX+zJbw3ShAeeqezq50RIIcIURq7Oa20rW2n2q+fyXBNcU9lrw==" crossorigin="anonymous"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-mousewheel/3.1.13/jquery.mousewheel.min.js" integrity="sha512-rCjfoab9CVKOH/w/T6GbBxnAH5Azhy4+q1EXW5XEURefHbIkRbQ++ZR+GBClo3/d3q583X/gO4FKmOFuhkKrdA==" crossorigin="anonymous"></script>
         <script src="js/scripts.js"></script>
+        <script>
 
+
+   
+        </script>
 
 </body>
 

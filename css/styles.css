@@ -139,4 +139,88 @@ fa-cart-arrow-down {
   -webkit-animation: float 3s linear infinite;
   animation: float 3s linear infinite;
 } */
- */
+
+
+/*Owl Design*/
+/* .owl-prev {
+    left: -30px;
+}
+.owl-next {
+    right:-30px;
+}
+.owl-prev, .owl-next{
+    position:absolute;
+    top: 30%;
+}
+.owl-prev span, .owl-next span {
+    font-size: 60px;
+    color:#787878;
+}
+.owl-theme .owl-nav [class*="owl-"]:hover {
+    background-color: transparent;
+} */
+
+/* .owl-prev {
+    left: -30px;
+}
+.owl-next {
+    right:-30px;
+}
+.owl-prev, .owl-next{
+    position:absolute;
+    top: 30%;
+}
+.owl-prev span, .owl-next span {
+    font-size: 60px;
+    color:#787878;
+}
+.owl-theme .owl-nav [class*="owl-"]:hover {
+    background-color: transparent;
+} */
+
+
+/* .owl-prev {
+    left: -30px;
+}
+.owl-next {
+    right:-30px;
+}
+.owl-prev, .owl-next{
+    position:absolute;
+    top: 30%;
+}
+.owl-prev span, .owl-next span {
+    font-size: 60px;
+    color:#787878;
+}
+.owl-theme .owl-nav [class*="owl-"]:hover {
+    background-color: transparent;
+} */
+
+/* .owl-prev, .owl-next {
+    width: 15px;
+    height: 100px;
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    display: block !important;
+    border:0px solid black;
+}
+.owl-prev { left: -20px; }
+.owl-next { right: -20px; }
+.owl-prev i, .owl-next i {transform : scale(2,5); color: #ccc;} */
+
+.owl-prev,
+.owl-next {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.owl-prev {
+  left: -2rem;
+}
+
+.owl-next {
+  right: -2rem;
+}
