@@ -154,5 +154,21 @@ apiUrl
 
 
 
-    
+    /*Creating google map*/
+    function initMap() {
+        // The location of Munich
+        const munich = { lat: 48.137154, lng: 11.576124 };
+        // The map, centered at Munich
+        const map = new google.maps.Map(document.getElementById("map"), {
+          zoom: 15,
+          center: munich,
+        });
+        // The marker, positioned at Munich
+        const marker = new google.maps.Marker({
+          position: munich,
+          map: map,
+        });
+      }
 
+     /**Connecting Map Location API  */
+     
