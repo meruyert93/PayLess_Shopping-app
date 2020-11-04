@@ -65,7 +65,7 @@ const apiUrl = fetch('https://www.edeka.de/eh/service/eh/offers');
 apiUrl
   .then(response => response.json())
   .then(content => {
-      console.log(content);
+    //   console.log(content);
       let htmlRepresentation = "";  
       content.docs.forEach(element => {
         htmlRepresentation += `
@@ -170,5 +170,19 @@ apiUrl
         });
       }
 
-     /**Connecting Map Location API  */
-     
+/**Connecting Map Location API  */
+
+const StoresList = document.getElementById("stores-list");
+const LocationApiUrl = fetch('https://www.edeka.de/api/marketsearch/markets');
+
+LocationApiUrl
+    .then(response => response.json())
+    .then(object => {
+        let storesHTML = ""
+        object.forEach(function(store, index){
+            var name = "store.markets.name";
+            console.log(name);
+        });
+    })
+
+
