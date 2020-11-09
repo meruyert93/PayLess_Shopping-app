@@ -1,3 +1,4 @@
+
 //Animation text
 var TxtType = function(el, toRotate, period) {
         this.toRotate = toRotate;
@@ -178,11 +179,44 @@ const LocationApiUrl = fetch('https://www.edeka.de/api/marketsearch/markets');
 LocationApiUrl
     .then(response => response.json())
     .then(object => {
-        let storesHTML = ""
-        object.forEach(function(store, index){
-            var name = "store.markets.name";
-            console.log(name);
-        });
-    })
+        // let storesHTML = "";
+        // var nameSupermarket = object.markets[0].name;
+       
+        for ( var i = 0; i < object.markets[i].length; i++) {
+            var nameSupermarket = object.markets[i].name;
+            console.log(nameSupermarket);
+        }
+        // Object.entries(object).forEach(function(object) {
+
+        //     console.log(object);
+           
+        // });
+
+        // var nameSupermarket = object.markets[0].name;
+        // var addressSupermarket = object.markets[0].contact.address.street;
+        // var zipCodeSupermarket = object.markets[0].contact.address.city.zipCode;
+        // var citySupermarket = object.markets[0].contact.address.city.name;
+        // var urlSupermarket = object.markets[0].url;
+        // var phoneSupermarket = object.markets[0].contact.phoneNumber;
+        // console.log(phoneSupermarket);
+        // console.log(urlSupermarket);
+        // console.log(citySupermarket);
+        // console.log(zipCodeSupermarket);
+        // console.log(addressSupermarket);
+        // console.log(nameSupermarket);
+
+        // const options = { weekday: 'long' };
+        // var today = new Date().toLocaleTimeString('en-DE', options);
+        // console.log(today);
 
 
+        // if (today == object.markets[0].businessHours.sunday) {
+        //     console.log('Currently open')
+        // } else {
+        //     console.log('Currently closed')
+        // }
+    
+   
+       
+    });     
+    
