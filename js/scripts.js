@@ -1,3 +1,7 @@
+// Call functions
+
+
+
 
 //Animation text
 var TxtType = function(el, toRotate, period) {
@@ -99,7 +103,9 @@ apiUrl
       return htmlRepresentation;
   })
   .then(htmlRepresetation =>{
-        contentDiv.innerHTML = htmlRepresetation;
+       
+            contentDiv.innerHTML = htmlRepresetation;
+        
 
                 //Owl Carousel Creation
                 $('.owl-carousel').owlCarousel({
@@ -150,7 +156,8 @@ apiUrl
                     e.preventDefault();
                 });
 
-        console.log(htmlRepresetation);
+            console.log(htmlRepresetation);
+        
     });
 
 
@@ -173,24 +180,85 @@ apiUrl
 
 /**Connecting Map Location API  */
 
-const StoresList = document.getElementById("stores-list");
+// const StoresList = document.getElementById("stores-list");
 const LocationApiUrl = fetch('https://www.edeka.de/api/marketsearch/markets');
 
 LocationApiUrl
     .then(response => response.json())
     .then(object => {
         // let storesHTML = "";
-        // var nameSupermarket = object.markets[0].name;
-       
-        for ( var i = 0; i < object.markets[i].length; i++) {
-            var nameSupermarket = object.markets[i].name;
-            console.log(nameSupermarket);
-        }
-        // Object.entries(object).forEach(function(object) {
+        
+        var storesHTML = "";
+        
+        for ( var i = 0; i < object.markets.length; i++) {
 
-        //     console.log(object);
+            
            
-        // });
+            var nameSupermarket = object.markets[i].name;
+            var addressSupermarket = object.markets[i].contact.address.street;
+            var zipCodeSupermarket = object.markets[i].contact.address.city.zipCode;
+            var citySupermarket = object.markets[i].contact.address.city.name;
+            var urlSupermarket = object.markets[i].url;
+            var phoneSupermarket = object.markets[i].contact.phoneNumber;
+
+            // console.log(phoneSupermarket);
+            // console.log(urlSupermarket);
+            // console.log(citySupermarket);
+            // console.log(zipCodeSupermarket);
+            // console.log(addressSupermarket);
+            // console.log(nameSupermarket);
+
+            
+            storesHTML =  `
+            <div class="store-container">
+            <div class="store-info-container">
+                
+                <div class="store-name font-weight-bold text-large">
+                    <span>${nameSupermarket}</span>
+                </div>
+                
+                <div class="store-address">
+                    <span>${addressSupermarket},</span>
+                    <span>${zipCodeSupermarket} ${citySupermarket}</span>
+                </div>
+                
+                <div class="store-opening-hours">
+                    <span class="font-weight-bold">Opening times:</span> <span> Weekday from 07:00 to 20:00 </span>
+                </div>
+
+                <div class="store-phone-number">
+                    ${phoneSupermarket}
+                </div>
+
+            </div>
+
+            <div class="store-number-container">
+
+                <div class="website"> 
+                    <span>
+                        <i class="fa fa-globe fa-2x" href="${urlSupermarket}"></i>
+                    </span>
+                </div>
+
+                <div class = "store-number">
+                    
+                    1
+
+                </div>
+                
+            </div>
+            </div>
+            `;
+        
+            document.querySelector('.stores-list').innerHTML = storesHTML;   
+            console.log(storesHTML);
+            
+        }
+        //  Object.entries(object).forEach(function(object) {
+
+        //      console.log(object);
+           
+        //  });
 
         // var nameSupermarket = object.markets[0].name;
         // var addressSupermarket = object.markets[0].contact.address.street;
@@ -215,8 +283,9 @@ LocationApiUrl
         // } else {
         //     console.log('Currently closed')
         // }
-    
-   
        
+        
+
+      
     });     
     
