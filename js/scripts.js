@@ -209,7 +209,7 @@ LocationApiUrl
             // console.log(nameSupermarket);
 
             
-            storesHTML =  `
+            storesHTML +=  `
             <div class="store-container">
             <div class="store-info-container">
                 
@@ -236,13 +236,13 @@ LocationApiUrl
 
                 <div class="website"> 
                     <span>
-                        <i class="fa fa-globe fa-2x" href="${urlSupermarket}"></i>
+                        <a href="${urlSupermarket}"><i class="fa fa-globe fa-2x"></i></a>
                     </span>
                 </div>
 
                 <div class = "store-number">
                     
-                    1
+                    ${i + 1} 
 
                 </div>
                 
@@ -250,8 +250,7 @@ LocationApiUrl
             </div>
             `;
         
-            document.querySelector('.stores-list').innerHTML = storesHTML;   
-            console.log(storesHTML);
+            
             
         }
         //  Object.entries(object).forEach(function(object) {
@@ -284,8 +283,9 @@ LocationApiUrl
         //     console.log('Currently closed')
         // }
        
-        
+        document.querySelector('.stores-list').innerHTML = storesHTML;   
+        console.log(storesHTML);
 
-      
+
     });     
     
