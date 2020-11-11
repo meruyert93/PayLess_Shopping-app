@@ -1,4 +1,9 @@
-// Call functions
+
+// Variables
+
+
+
+//functions
 
 
 
@@ -65,9 +70,9 @@ var TxtType = function(el, toRotate, period) {
 
 //API connection
 const contentDiv = document.getElementById('content');
-const apiUrl = fetch('https://www.edeka.de/eh/service/eh/offers');
+const apiUrl = 'https://www.edeka.de/eh/service/eh/offers';
 
-apiUrl
+fetch(apiUrl)
   .then(response => response.json())
   .then(content => {
     //   console.log(content);
@@ -122,26 +127,19 @@ apiUrl
                     responsive:{
                         0: {
                             items: 1,
-                            // dots:false
                         }, 
                         485: {
                             items: 2,
-                            // dots: false
                         },
                         728: {
                             items:3,
-                            // dots:true
+                            
                         },
                         960: {
                             items:3,
-                            // loop: true,
-                            
                         },
                         1200: {
                             items:5,
-                            // dots:true,
-                            // loop: false,
-                            // nav: true,
                         }
                     }
                     
@@ -159,47 +157,45 @@ apiUrl
             console.log(htmlRepresetation);
         
     });
+    var markers = [];
+    var infoWindow;
+    var map;
+  /**Connecting Map Location API  */
+        /*Creating google map*/
+        function initMap() {
+            // The location of Munich
+            const munich = { lat: 48.137154, lng: 11.576124 };
+            // The map, centered at Munich
+            map = new google.maps.Map(document.getElementById("map"), {
+              zoom: 15,
+              center: munich,
+            });
+            infoWindow = new google.maps.InfoWindow()
+    
+        }
 
+const LocationApiUrl = 'https://www.edeka.de/api/marketsearch/markets?searchstring=m%C3%BCnchen';
 
-
-    /*Creating google map*/
-    function initMap() {
-        // The location of Munich
-        const munich = { lat: 48.137154, lng: 11.576124 };
-        // The map, centered at Munich
-        const map = new google.maps.Map(document.getElementById("map"), {
-          zoom: 15,
-          center: munich,
-        });
-        // The marker, positioned at Munich
-        const marker = new google.maps.Marker({
-          position: munich,
-          map: map,
-        });
-      }
-
-/**Connecting Map Location API  */
-
-// const StoresList = document.getElementById("stores-list");
-const LocationApiUrl = fetch('https://www.edeka.de/api/marketsearch/markets');
-
-LocationApiUrl
+fetch(LocationApiUrl)
     .then(response => response.json())
-    .then(object => {
-        // let storesHTML = "";
+    .then(data => {
         
         var storesHTML = "";
+        var nameSupermarket;
+        var addressSupermarket;
+        var zipCodeSupermarket;
+        var citySupermarket;
+        var urlSupermarket;
+        var phoneSupermarket;
         
-        for ( var i = 0; i < object.markets.length; i++) {
+        for ( var i = 0; i < data.markets.length; i++) {
 
-            
-           
-            var nameSupermarket = object.markets[i].name;
-            var addressSupermarket = object.markets[i].contact.address.street;
-            var zipCodeSupermarket = object.markets[i].contact.address.city.zipCode;
-            var citySupermarket = object.markets[i].contact.address.city.name;
-            var urlSupermarket = object.markets[i].url;
-            var phoneSupermarket = object.markets[i].contact.phoneNumber;
+            nameSupermarket = data.markets[i].name;
+            addressSupermarket = data.markets[i].contact.address.street;
+            zipCodeSupermarket = data.markets[i].contact.address.city.zipCode;
+            citySupermarket = data.markets[i].contact.address.city.name;
+            urlSupermarket = data.markets[i].url;
+            phoneSupermarket = data.markets[i].contact.phoneNumber;
 
             // console.log(phoneSupermarket);
             // console.log(urlSupermarket);
@@ -207,8 +203,7 @@ LocationApiUrl
             // console.log(zipCodeSupermarket);
             // console.log(addressSupermarket);
             // console.log(nameSupermarket);
-
-            
+ 
             storesHTML +=  `
             <div class="store-container">
             <div class="store-info-container">
@@ -249,33 +244,16 @@ LocationApiUrl
             </div>
             </div>
             `;
-        
-            
-            
+
         }
         //  Object.entries(object).forEach(function(object) {
 
         //      console.log(object);
            
         //  });
-
-        // var nameSupermarket = object.markets[0].name;
-        // var addressSupermarket = object.markets[0].contact.address.street;
-        // var zipCodeSupermarket = object.markets[0].contact.address.city.zipCode;
-        // var citySupermarket = object.markets[0].contact.address.city.name;
-        // var urlSupermarket = object.markets[0].url;
-        // var phoneSupermarket = object.markets[0].contact.phoneNumber;
-        // console.log(phoneSupermarket);
-        // console.log(urlSupermarket);
-        // console.log(citySupermarket);
-        // console.log(zipCodeSupermarket);
-        // console.log(addressSupermarket);
-        // console.log(nameSupermarket);
-
         // const options = { weekday: 'long' };
         // var today = new Date().toLocaleTimeString('en-DE', options);
         // console.log(today);
-
 
         // if (today == object.markets[0].businessHours.sunday) {
         //     console.log('Currently open')
@@ -284,8 +262,70 @@ LocationApiUrl
         // }
        
         document.querySelector('.stores-list').innerHTML = storesHTML;   
-        console.log(storesHTML);
+        // console.log(storesHTML);
+        
+        var markers = [];
+        function showStoresMarker() {
+            var bounds = new google.maps.LatLngBounds();
+            for (var i = 0; i < data.markets.length; i++){
+                var Lat = data.markets[i].coordinates.lat;
+                var lon = data.markets[i].coordinates.lon;
+                var latLng = new google.maps.LatLng(Lat, lon);
+                nameSupermarket = data.markets[i].name;
+                addressSupermarket = data.markets[i].contact.address.street;
+                phoneSupermarket = data.markets[i].contact.phoneNumber;
+                bounds.extend(latLng);
+                // console.log(latLng);
+                createMarker(latLng, nameSupermarket, addressSupermarket, phoneSupermarket);
+            }
+
+            map.fitBounds(bounds);
+        }
+    
+        function createMarker(latlng, nameSupermarket, addressSupermarket, phoneSupermarket){
+            var html = `
+            <div class="store-info-window">
+            <div class="store-info-name">
+                ${nameSupermarket}
+            </div>
+            <div class="store-info-status">
+            Open until 8:00 PM
+            </div>
+            <div class="store-info-address">
+                <div class="circle">
+                    <i class="fa fa-location-arrow"></i>
+                </div>
+                ${addressSupermarket}
+            </div>
+            <div class="store-info-phone">
+                <div class="circle">
+                    <i class="fa fa-phone"></i>
+                </div>
+                ${phoneSupermarket}
+            </div>
+        </div>
+            `;
+            
+            var marker = new google.maps.Marker({
+                map: map,
+                position: latlng,
+                // label: `${i + 1}`
+            });
+
+            google.maps.event.addListener(marker, 'click', function(){
+                infoWindow.setContent(html);
+                infoWindow.open(map, marker);
+            })
+
+            markers.push(marker);
+            console.log(markers);
 
 
+        };
+        showStoresMarker();
+        
     });     
+    
+
+  
     
