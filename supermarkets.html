@@ -179,6 +179,11 @@
     margin-right: 8px;
 }
 
+
+
+#sticky-footer {
+  flex-shrink: none;
+}
  </style>
  
     <title>Angebot Vergleich</title>
@@ -230,7 +235,7 @@
         </div>
     </header>
 
-    <div class="container-fluid">
+    <div class="container-fluid mb-5">
         <div class="row ">
             <div class="col-4 mr-5 ml-5" style="background-color: #ddd; height: 750px; width:100%" >
                 <div class="col-lg-12 col-sm-12 search-container"> 
@@ -263,7 +268,6 @@
                                 </div>
 
                             </div>
-
                             <div class="store-number-container">
                 
                                 <div class="website"> 
@@ -277,14 +281,8 @@
                                     1
                 
                                 </div>
-                                
                             </div>
-
                         </div>
-
-
-
-                        
                     </div>
                 </div>
 
@@ -299,7 +297,11 @@
     </div>
 
 
-
+    <footer id="sticky-footer" class="py-4 bg-dark text-white-50">
+        <div class="container text-center">
+          <small>Copyright &copy; created by MK</small>
+        </div>
+    </footer>
     
 
 

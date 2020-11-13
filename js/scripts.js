@@ -1,13 +1,3 @@
-
-// Variables
-
-
-
-//functions
-
-
-
-
 //Animation text
 var TxtType = function(el, toRotate, period) {
         this.toRotate = toRotate;
@@ -157,8 +147,8 @@ fetch(apiUrl)
             console.log(htmlRepresetation);
         
     });
-    var markers = [];
-    var infoWindow;
+    let markers = [];
+    let infoWindow;
     var map;
   /**Connecting Map Location API  */
         /*Creating google map*/
@@ -174,19 +164,19 @@ fetch(apiUrl)
     
         }
 
-const LocationApiUrl = 'https://www.edeka.de/api/marketsearch/markets?searchstring=m%C3%BCnchen';
+const LocationApiUrl = 'https://www.edeka.de/api/marketsearch/markets?searchstring=Munchen&size=124';
 
 fetch(LocationApiUrl)
     .then(response => response.json())
     .then(data => {
         
-        var storesHTML = "";
-        var nameSupermarket;
-        var addressSupermarket;
-        var zipCodeSupermarket;
-        var citySupermarket;
-        var urlSupermarket;
-        var phoneSupermarket;
+        let storesHTML = "";
+        let nameSupermarket;
+        let addressSupermarket;
+        let zipCodeSupermarket;
+        let citySupermarket;
+        let urlSupermarket;
+        let phoneSupermarket;
         
         for ( var i = 0; i < data.markets.length; i++) {
 
@@ -205,52 +195,51 @@ fetch(LocationApiUrl)
             // console.log(nameSupermarket);
  
             storesHTML +=  `
-            <div class="store-container">
-            <div class="store-info-container">
-                
-                <div class="store-name font-weight-bold text-large">
-                    <span>${nameSupermarket}</span>
-                </div>
-                
-                <div class="store-address">
-                    <span>${addressSupermarket},</span>
-                    <span>${zipCodeSupermarket} ${citySupermarket}</span>
-                </div>
-                
-                <div class="store-opening-hours">
-                    <span class="font-weight-bold">Opening times:</span> <span> Weekday from 07:00 to 20:00 </span>
-                </div>
-
-                <div class="store-phone-number">
-                    ${phoneSupermarket}
-                </div>
-
-            </div>
-
-            <div class="store-number-container">
-
-                <div class="website"> 
-                    <span>
-                        <a href="${urlSupermarket}"><i class="fa fa-globe fa-2x"></i></a>
-                    </span>
-                </div>
-
-                <div class = "store-number">
+                <div class="store-container">
+                <div class="store-info-container">
                     
-                    ${i + 1} 
+                    <div class="store-name font-weight-bold text-large">
+                        <span>${nameSupermarket}</span>
+                    </div>
+                    
+                    <div class="store-address">
+                        <span>${addressSupermarket},</span>
+                        <span>${zipCodeSupermarket} ${citySupermarket}</span>
+                    </div>
+                    
+                    <div class="store-opening-hours">
+                        <span class="font-weight-bold">Opening times:</span> <span> Weekday from 07:00 to 20:00 </span>
+                    </div>
+
+                    <div class="store-phone-number">
+                        ${phoneSupermarket}
+                    </div>
 
                 </div>
-                
-            </div>
-            </div>
-            `;
+
+                <div class="store-number-container">
+
+                    <div class="website"> 
+                        <span>
+                            <a href="${urlSupermarket}"><i class="fa fa-globe fa-2x"></i></a>
+                        </span>
+                    </div>
+
+                    <div class = "store-number">
+                        
+                        ${i + 1} 
+
+                    </div>
+                    
+                </div>
+                </div>
+                `;
 
         }
         //  Object.entries(object).forEach(function(object) {
-
         //      console.log(object);
-           
         //  });
+        
         // const options = { weekday: 'long' };
         // var today = new Date().toLocaleTimeString('en-DE', options);
         // console.log(today);
@@ -262,60 +251,60 @@ fetch(LocationApiUrl)
         // }
        
         document.querySelector('.stores-list').innerHTML = storesHTML;   
-        // console.log(storesHTML);
-        
+
         var markers = [];
+        
         function showStoresMarker() {
             var bounds = new google.maps.LatLngBounds();
             for (var i = 0; i < data.markets.length; i++){
                 var Lat = data.markets[i].coordinates.lat;
                 var lon = data.markets[i].coordinates.lon;
                 var latLng = new google.maps.LatLng(Lat, lon);
+                var position = i + 1;
                 nameSupermarket = data.markets[i].name;
                 addressSupermarket = data.markets[i].contact.address.street;
                 phoneSupermarket = data.markets[i].contact.phoneNumber;
                 bounds.extend(latLng);
-                // console.log(latLng);
-                createMarker(latLng, nameSupermarket, addressSupermarket, phoneSupermarket);
+                createMarker(latLng, nameSupermarket, addressSupermarket, phoneSupermarket, position);
             }
 
             map.fitBounds(bounds);
         }
     
-        function createMarker(latlng, nameSupermarket, addressSupermarket, phoneSupermarket){
+        function createMarker(latlng, nameSupermarket, addressSupermarket, phoneSupermarket, position) {
             var html = `
-            <div class="store-info-window">
-            <div class="store-info-name">
-                ${nameSupermarket}
-            </div>
-            <div class="store-info-status">
-            Open until 8:00 PM
-            </div>
-            <div class="store-info-address">
-                <div class="circle">
-                    <i class="fa fa-location-arrow"></i>
+                <div class="store-info-window">
+                    <div class="store-info-name">
+                        ${nameSupermarket}
+                    </div>
+                    <div class="store-info-status">
+                    Open until 8:00 PM
+                    </div>
+                    <div class="store-info-address">
+                        <div class="circle">
+                            <i class="fa fa-location-arrow"></i>
+                        </div>
+                        ${addressSupermarket}
+                    </div>
+                    <div class="store-info-phone">
+                        <div class="circle">
+                            <i class="fa fa-phone"></i>
+                        </div>
+                        ${phoneSupermarket}
+                    </div>
                 </div>
-                ${addressSupermarket}
-            </div>
-            <div class="store-info-phone">
-                <div class="circle">
-                    <i class="fa fa-phone"></i>
-                </div>
-                ${phoneSupermarket}
-            </div>
-        </div>
-            `;
+                `;
             
             var marker = new google.maps.Marker({
                 map: map,
                 position: latlng,
-                // label: `${i + 1}`
+                label: `${position}`
             });
 
-            google.maps.event.addListener(marker, 'click', function(){
+            google.maps.event.addListener(marker, 'click', function() {
                 infoWindow.setContent(html);
                 infoWindow.open(map, marker);
-            })
+            } )
 
             markers.push(marker);
             console.log(markers);
@@ -324,7 +313,7 @@ fetch(LocationApiUrl)
         };
         showStoresMarker();
         
-    });     
+    } );     
     
 
   
