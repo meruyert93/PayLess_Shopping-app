@@ -86,6 +86,11 @@
     cursor: pointer;
     }
 
+
+    .store-container:hover {
+    background-color: #eeeeee; 
+    }
+
     .store-info-container {
     flex-grow: 1;
     }
@@ -179,8 +184,6 @@
     margin-right: 8px;
 }
 
-
-
 #sticky-footer {
   flex-shrink: none;
 }
@@ -240,8 +243,8 @@
             <div class="col-4 mr-5 ml-5" style="background-color: #ddd; height: 750px; width:100%" >
                 <div class="col-lg-12 col-sm-12 search-container"> 
                     <div class="search"> 
-                        <input class="form-control mr-sm-2" type="search" placeholder="Enter your address" aria-label="Search">
-                        <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+                        <input class="form-control mr-sm-2" type="search" placeholder="Enter your address" aria-label="Search" id="inputValue">
+                        <button class="btn btn-outline-success my-2 my-sm-0" type="submit" onclick="searchstores()">Search</button>
                     </div>
                 </div>
 
