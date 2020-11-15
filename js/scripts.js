@@ -304,7 +304,7 @@ fetch(LocationApiUrl)
             google.maps.event.addListener(marker, 'click', function() {
                 infoWindow.setContent(html);
                 infoWindow.open(map, marker);
-            } )
+            });
 
             markers.push(marker);
             console.log(markers);
@@ -313,7 +313,7 @@ fetch(LocationApiUrl)
         };
         showStoresMarker();
         
-    } );     
+    });     
     
 
   
