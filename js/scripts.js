@@ -169,77 +169,6 @@ const LocationApiUrl = 'https://www.edeka.de/api/marketsearch/markets?searchstri
 fetch(LocationApiUrl)
     .then(response => response.json())
     .then(data => {
-        
-        let storesHTML = "";
-        let nameSupermarket;
-        let addressSupermarket;
-        let zipCodeSupermarket;
-        let citySupermarket;
-        let urlSupermarket;
-        let phoneSupermarket;
-        
-            function displayStores() {
-                for ( var i = 0; i < data.markets.length; i++) {
-
-                    nameSupermarket = data.markets[i].name;
-                    addressSupermarket = data.markets[i].contact.address.street;
-                    zipCodeSupermarket = data.markets[i].contact.address.city.zipCode;
-                    citySupermarket = data.markets[i].contact.address.city.name;
-                    urlSupermarket = data.markets[i].url;
-                    phoneSupermarket = data.markets[i].contact.phoneNumber;
-        
-                    // console.log(phoneSupermarket);
-                    // console.log(urlSupermarket);
-                    // console.log(citySupermarket);
-                    // console.log(zipCodeSupermarket);
-                    // console.log(addressSupermarket);
-                    // console.log(nameSupermarket);
-         
-                    storesHTML +=  `
-                        <div class="store-container">
-                        <div class="store-info-container">
-                            
-                            <div class="store-name font-weight-bold text-large">
-                                <span>${nameSupermarket}</span>
-                            </div>
-                            
-                            <div class="store-address">
-                                <span>${addressSupermarket},</span>
-                                <span>${zipCodeSupermarket} ${citySupermarket}</span>
-                            </div>
-                            
-                            <div class="store-opening-hours">
-                                <span class="font-weight-bold">Opening times:</span> <span> Weekday from 07:00 to 20:00 </span>
-                            </div>
-        
-                            <div class="store-phone-number">
-                                ${phoneSupermarket}
-                            </div>
-        
-                        </div>
-        
-                        <div class="store-number-container">
-        
-                            <div class="website"> 
-                                <span>
-                                    <a href="${urlSupermarket}"><i class="fa fa-globe fa-2x"></i></a>
-                                </span>
-                            </div>
-        
-                            <div class = "store-number">
-                                
-                                ${i + 1} 
-        
-                            </div>
-                            
-                        </div>
-                        </div>
-                        `;
-        
-                };
-                document.querySelector('.stores-list').innerHTML = storesHTML;  
-            };
-            
         //  Object.entries(object).forEach(function(object) {
         //      console.log(object);
         //  });
@@ -253,85 +182,10 @@ fetch(LocationApiUrl)
         // } else {
         //     console.log('Currently closed')
         // }
-       
-        var markers = [];
-        
-        function showStoresMarker() {
-            var bounds = new google.maps.LatLngBounds();
-            for (var i = 0; i < data.markets.length; i++){
-                var Lat = data.markets[i].coordinates.lat;
-                var lon = data.markets[i].coordinates.lon;
-                var latLng = new google.maps.LatLng(Lat, lon);
-                var position = i + 1;
-                nameSupermarket = data.markets[i].name;
-                addressSupermarket = data.markets[i].contact.address.street;
-                phoneSupermarket = data.markets[i].contact.phoneNumber;
-                bounds.extend(latLng);
-                createMarker(latLng, nameSupermarket, addressSupermarket, phoneSupermarket, position);
-            }
-
-            map.fitBounds(bounds);
-        }
-    
-        function createMarker(latlng, nameSupermarket, addressSupermarket, phoneSupermarket, position) {
-            var html = `
-                <div class="store-info-window">
-                    <div class="store-info-name">
-                        ${nameSupermarket}
-                    </div>
-                    <div class="store-info-status">
-                    Open until 8:00 PM
-                    </div>
-                    <div class="store-info-address">
-                        <div class="circle">
-                            <i class="fa fa-location-arrow"></i>
-                        </div>
-                        ${addressSupermarket}
-                    </div>
-                    <div class="store-info-phone">
-                        <div class="circle">
-                            <i class="fa fa-phone"></i>
-                        </div>
-                        ${phoneSupermarket}
-                    </div>
-                </div>
-                `;
-            
-            var marker = new google.maps.Marker({
-                map: map,
-                position: latlng,
-                label: `${position}`
-            });
-
-            google.maps.event.addListener(marker, 'click', function() {
-                infoWindow.setContent(html);
-                infoWindow.open(map, marker);
-            } )
-
-            markers.push(marker);
-            //console.log(markers);
-
-
-        };
-
-       
-        
-        function setOnClickListener() {
-            var storeElements = document.querySelectorAll('.store-container');
-            //console.log(storeElements);
-            storeElements.forEach(function(elem, index){
-                elem.addEventListener('click', function(){
-                    google.maps.event.trigger(markers[index], 'click');
-                })
-            });
-        }
-
-
-        
-        displayStores();
-        showStoresMarker();
+        displayStores(data);
+        showStoresMarker(data);
         setOnClickListener();
-        searchstores();
+        // searchstores();
         
     } );     
     
@@ -344,3 +198,142 @@ fetch(LocationApiUrl)
     //     }
 
     // };
+
+    let storesHTML = "";
+    let nameSupermarket;
+    let addressSupermarket;
+    let zipCodeSupermarket;
+    let citySupermarket;
+    let urlSupermarket;
+    let phoneSupermarket;
+
+    function displayStores(data) {
+        for ( var i = 0; i < data.markets.length; i++) {
+
+            nameSupermarket = data.markets[i].name;
+            addressSupermarket = data.markets[i].contact.address.street;
+            zipCodeSupermarket = data.markets[i].contact.address.city.zipCode;
+            citySupermarket = data.markets[i].contact.address.city.name;
+            urlSupermarket = data.markets[i].url;
+            phoneSupermarket = data.markets[i].contact.phoneNumber;
+
+            // console.log(phoneSupermarket);
+            // console.log(urlSupermarket);
+            // console.log(citySupermarket);
+            // console.log(zipCodeSupermarket);
+            // console.log(addressSupermarket);
+            // console.log(nameSupermarket);
+ 
+            storesHTML +=  `
+                <div class="store-container">
+                <div class="store-info-container">
+                    
+                    <div class="store-name font-weight-bold text-large">
+                        <span>${nameSupermarket}</span>
+                    </div>
+                    
+                    <div class="store-address">
+                        <span>${addressSupermarket},</span>
+                        <span>${zipCodeSupermarket} ${citySupermarket}</span>
+                    </div>
+                    
+                    <div class="store-opening-hours">
+                        <span class="font-weight-bold">Opening times:</span> <span> Weekday from 07:00 to 20:00 </span>
+                    </div>
+
+                    <div class="store-phone-number">
+                        ${phoneSupermarket}
+                    </div>
+
+                </div>
+
+                <div class="store-number-container">
+
+                    <div class="website"> 
+                        <span>
+                            <a href="${urlSupermarket}"><i class="fa fa-globe fa-2x"></i></a>
+                        </span>
+                    </div>
+
+                    <div class = "store-number">
+                        
+                        ${i + 1} 
+
+                    </div>
+                    
+                </div>
+                </div>
+                `;
+
+        };
+        document.querySelector('.stores-list').innerHTML = storesHTML;  
+    };
+
+    const markers = [];
+    function showStoresMarker(data) {
+        let bounds = new google.maps.LatLngBounds();
+        for (var i = 0; i < data.markets.length; i++){
+            var Lat = data.markets[i].coordinates.lat;
+            var lon = data.markets[i].coordinates.lon;
+            var latLng = new google.maps.LatLng(Lat, lon);
+            var position = i + 1;
+            nameSupermarket = data.markets[i].name;
+            addressSupermarket = data.markets[i].contact.address.street;
+            phoneSupermarket = data.markets[i].contact.phoneNumber;
+            bounds.extend(latLng);
+            createMarker(latLng, nameSupermarket, addressSupermarket, phoneSupermarket, position);
+        }
+
+        map.fitBounds(bounds);
+    }
+
+    function createMarker(latlng, nameSupermarket, addressSupermarket, phoneSupermarket, position) {
+        var html = `
+            <div class="store-info-window">
+                <div class="store-info-name">
+                    ${nameSupermarket}
+                </div>
+                <div class="store-info-status">
+                Open until 8:00 PM
+                </div>
+                <div class="store-info-address">
+                    <div class="circle">
+                        <i class="fa fa-location-arrow"></i>
+                    </div>
+                    ${addressSupermarket}
+                </div>
+                <div class="store-info-phone">
+                    <div class="circle">
+                        <i class="fa fa-phone"></i>
+                    </div>
+                    ${phoneSupermarket}
+                </div>
+            </div>
+            `;
+        
+        var marker = new google.maps.Marker({
+            map: map,
+            position: latlng,
+            label: `${position}`
+        });
+
+        google.maps.event.addListener(marker, 'click', function() {
+            infoWindow.setContent(html);
+            infoWindow.open(map, marker);
+        } )
+
+        markers.push(marker);
+        //console.log(markers);
+
+
+    };
+
+    function setOnClickListener() {
+        var storeElements = document.querySelectorAll('.store-container');
+        //console.log(storeElements);
+        storeElements.forEach(function(elem, index){
+            elem.addEventListener('click', function(){
+                google.maps.event.trigger(markers[index], 'click');
+            })
+        });
+    }
