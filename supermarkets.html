@@ -138,10 +138,52 @@
 }
 
 
-    .text-large  {
-        font-size: 120%;
-    }
+.text-large  {
+    font-size: 120%;
+}
 
+/*Info window for stores*/
+.store-info-window {
+    min-width: 300px;
+    font-size: 18px;
+    padding: 8px;
+}
+
+.store-info-name {
+    font-size: 24px;
+    font-weight: bold;
+    color: rgba(0,0,0, 0.87);
+}
+
+.store-info-status {
+    margin-top: 6px;
+    border-bottom: 1px solid #00000029;
+    padding-bottom: 6px;
+}
+
+.store-info-address, .store-info-phone {
+    margin-top: 8px;
+    display: flex;
+    align-items: center;
+}
+
+.store-info-address .circle, .store-info-phone .circle {
+    width: 30px;
+    height: 30px;
+    background-color: #1985A1;
+    border-radius: 50%;
+    color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-right: 8px;
+}
+
+
+
+#sticky-footer {
+  flex-shrink: none;
+}
  </style>
  
     <title>Angebot Vergleich</title>
@@ -193,7 +235,7 @@
         </div>
     </header>
 
-    <div class="container-fluid">
+    <div class="container-fluid mb-5">
         <div class="row ">
             <div class="col-4 mr-5 ml-5" style="background-color: #ddd; height: 750px; width:100%" >
                 <div class="col-lg-12 col-sm-12 search-container"> 
@@ -226,7 +268,6 @@
                                 </div>
 
                             </div>
-
                             <div class="store-number-container">
                 
                                 <div class="website"> 
@@ -240,14 +281,8 @@
                                     1
                 
                                 </div>
-                                
                             </div>
-
                         </div>
-
-
-
-                        
                     </div>
                 </div>
 
@@ -262,7 +297,11 @@
     </div>
 
 
-
+    <footer id="sticky-footer" class="py-4 bg-dark text-white-50">
+        <div class="container text-center">
+          <small>Copyright &copy; created by MK</small>
+        </div>
+    </footer>
     
 
 
