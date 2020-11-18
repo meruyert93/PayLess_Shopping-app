@@ -89,45 +89,44 @@ fetch(apiUrl)
       return htmlRepresentation;
   })
   .then(htmlRepresetation =>{
-            contentDiv.innerHTML = htmlRepresetation;
-                //Owl Carousel Creation
-                $('.owl-carousel').owlCarousel({
-                    autoplay: true,
-                    autoplayHoverPause: true,
-                    margin: 10,
-                    stagePadding: 5,
-                    nav: true,
-                    loop: true,
-                    navText: [
-                        "<i class='fa fa-chevron-left fa-2x'></i>",
-                        "<i class='fa fa-chevron-right fa-2x'></i>"
-                     ],
-                    responsive:{
-                        0: {
-                            items: 1,
-                        }, 
-                        485: {
-                            items: 2,
-                        },
-                        728: {
-                            items:3,
-                            
-                        },
-                        960: {
-                            items:3,
-                        },
-                        1200: {
-                            items:5,
-                        }
+        contentDiv.innerHTML = htmlRepresetation;
+            //Owl Carousel Creation
+            $('.owl-carousel').owlCarousel({
+                autoplay: true,
+                autoplayHoverPause: true,
+                margin: 10,
+                stagePadding: 5,
+                nav: true,
+                loop: true,
+                navText: [
+                    "<i class='fa fa-chevron-left fa-2x'></i>",
+                    "<i class='fa fa-chevron-right fa-2x'></i>"
+                    ],
+                responsive:{
+                    0: {
+                        items: 1,
+                    }, 
+                    485: {
+                        items: 2,
+                    },
+                    728: {
+                        items:3,        
+                    },
+                    960: {
+                        items:3,
+                    },
+                    1200: {
+                        items:5,
                     }
-                });
-                $('owl-carousel').on('mousewheel', 'owl-stage', function(e){
-                    if(e.deltaY>0) {
-                        $('.owl-carousel').trigger('next-owl');
-                    } else  {
-                        $('owl-carousel').trigger('prev.owl');
-                    }
+                }
+            });
+            $('owl-carousel').on('mousewheel', 'owl-stage', function(e){
+                if(e.deltaY>0) {
+                    $('.owl-carousel').trigger('next-owl');
+                } else  {
+                    $('owl-carousel').trigger('prev.owl');
+                }
                     e.preventDefault();
-                });
-    });
+            });
+});
  

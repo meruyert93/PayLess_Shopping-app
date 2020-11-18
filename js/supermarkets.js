@@ -3,30 +3,56 @@ let infoWindow;
 let map;
 
 /**Connecting Map Location API  */
-    /*Creating google map*/
-    function initMap() {
-        // The location of Munich
-        const munich = { lat: 48.137154, lng: 11.576124 };
-        // The map, centered at Munich
-        map = new google.maps.Map(document.getElementById("map"), {
-        //  maxZoom: 20,
-            center: munich,
-        });
-        infoWindow = new google.maps.InfoWindow()
-    }
+/*Creating google map*/
+function initMap() {
+    // The location of Munich
+    const munich = { lat: 48.137154, lng: 11.576124 };
+    // The map, centered at Munich
+    map = new google.maps.Map(document.getElementById("map"), {
+    //  maxZoom: 20,
+        center: munich,
+    });
+    infoWindow = new google.maps.InfoWindow()
+}
 
-/*Connecting Supermarkets locations API from EDEKA */
-const LocationApiUrl = 'https://www.edeka.de/api/marketsearch/markets?searchstring=Munchen&size=124';
-fetch(LocationApiUrl)
-.then(response => response.json())
-.then(data => {
-    /*Calling functions */
-    displayStores(data);
-    showStoresMarker(data);
-    setOnClickListener();
-    searchByPlace();
-    // searchstores();
-});     
+searchMarketsNear('München, Deutschland');
+
+/*Triggering Button when Enter is pressed */
+function triggerBtn() {
+    input = document.getElementById('inputValue');
+    input.addEventListener("keyup", function(event) {
+        if (event.keyCode === 13) {
+            event.preventDefault();
+            document.getElementById("myBtn").click();
+        }
+    });
+}
+
+/*Searching markets by ZIP code or region */
+function searchMarketsNear(searchedPlace) {
+    input = document.getElementById('inputValue').value;
+    if (input !== null && input !== '') {
+        searchedPlace = input;
+    } else {
+        searchedPlace = 'München, Deutschland';
+    }
+    
+    const LocationApiUrl = `https://www.edeka.de/api/marketsearch/markets?searchstring=${searchedPlace}&size=124`;
+    fetch(LocationApiUrl)
+        .then(response => response.json())
+        .then(data => {
+            /*Calling functions */
+            clearLocations()
+            displayStores(data);
+            showStoresMarker(data);
+            setOnClickListener();
+            autoCompleteInSearch()
+            triggerBtn();
+        })
+        .catch((error) => {
+            console.error('Error:', error);
+        });
+}
 
 let storesHTML = "";
 let nameSupermarket;
@@ -148,76 +174,21 @@ function setOnClickListener() {
     });
 }
 
-// function searchstores(data) {
-//     // let foundStores = [];
-//     let inputValue = document.getElementById('inputValue').value;
-//     // console.log(inputValue);
-//     for (let i = 0; i < data.markets.length; i++) {
-//     }
-// };
+function autoCompleteInSearch()  {
+    let input = document.getElementById('inputValue');
+    let autocomplete = new google.maps.places.Autocomplete(input);
+        autocomplete.bindTo('bounds', map);
+};
 
-    function searchByPlace()  {
-        //var foundStores = [];
-        //Creating the searchbox
-        let input = document.getElementById('inputValue');
-        let autocomplete = new google.maps.places.Autocomplete(input);
-        autocomplete.bindTo('bounds', map)
-        // Listen for the event fired when the user selects a prediction and retrieve
-        // more details for that place.
-          autocomplete.addListener("places_changed", function () {
-            //infoWindow.close();
-            processButtonSearch();
-            marker.setVisible(false);
-            let place = autocomplete.getPlaces();
-            if (!place.geometry) {
-                window.alert("Autocomplete's rturned place contains no geomtery");
-                return;
-            }
-            //if the place has a geometry,then present it on a map
-            if(place.geometry.viewport) {
-                map.fitBounds(place.geometry.viewport);
-            } else {
-                map.setCenter(place.geometry.location);
-                map.setZoom(17);
-            }
-          });
-
-          showStoresMarker(data);
-          displayStores(data);
-    };
-
-     processButtonSearch();
-
-    function processButtonSearch() {
-        const geocoder = new google.maps.Geocoder();
-        let button = document.getElementById('searchbutton');
-        button.addEventListener('click', function() {
-            geocodeAddress(geocoder, map);
-          });       
-    };
-    
-    function geocodeAddress(geocoder, resultsMap) {
-        var address = document.getElementById('inputValue').value;
-        geocoder.geocode({'address': address}, function(results, status) {
-          if (status === 'OK') {
-            resultsMap.setCenter(results[0].geometry.location);
-            // new google.maps.Marker({
-            //   map: resultsMap,
-            //   position: results[0].geometry.location
-            // });
-          } else {
-            alert('Geocode was not successful for the following reason: ' + status);
-          }
-        });
-      }
-
-    function clearLocations() {
-        infoWindow.close();
-        for (var i = 0; i < markers.length; i++) {
-          markers[i].setMap(null);
-        }
-        markers.length = 0;
+function clearLocations() {
+    infoWindow.close();
+    for (var i = 0; i < markers.length; i++) {
+    markers[i].setMap(null);
     }
+    markers.length = 0;
+}
+
+/**ATTENTION! CODE belo is just temporary stored, it will be deleted */
 
 /**Temporary stored commented code for future using to display wether the store open or now */
     // const options = { weekday: 'long' };
@@ -228,3 +199,52 @@ function setOnClickListener() {
     // } else {
     //     console.log('Currently closed')
     // }
+
+// function searchstores(data) {
+//     // let foundStores = [];
+//     let inputValue = document.getElementById('inputValue').value;
+//     // console.log(inputValue);
+//     for (let i = 0; i < data.markets.length; i++) {
+//     }
+// };
+
+// function processButtonSearch() {
+//     let button = document.getElementById('searchbutton');
+//         button.addEventListener('click', function() {
+//             geocodeAddress(map);
+//         });       
+//     };
+    
+// function geocodeAddress(resultsMap) {
+//     const geocoder = new google.maps.Geocoder();
+//     var address = document.getElementById('inputValue').value;
+//     geocoder.geocode({'address': address}, function(results, status) {
+//         if (status === 'OK') {
+//             resultsMap.setCenter(results[0].geometry.location);
+//             // new google.maps.Marker({
+//             //   map: resultsMap,
+//             //   position: results[0].geometry.location
+//             // });
+//         } else {
+//             alert('Geocode was not successful for the following reason: ' + status);
+//         }
+//     });
+// }
+
+/**part of the Function for autoCompleteInSearch()  */
+   // Listen for the event fired when the user selects a prediction and retrieve
+    // more details for that place.
+    //     autocomplete.addListener("places_changed", function () {
+    //     let place = autocomplete.getPlaces();
+    //     if (!place.geometry) {
+    //         window.alert("Autocomplete's returned place contains no geomtery");
+    //         return;
+    //     }
+    //     //if the place has a geometry,then present it on a map
+    //     if(place.geometry.viewport) {
+    //         map.fitBounds(place.geometry.viewport);
+    //     } else {
+    //         map.setCenter(place.geometry.location);
+    //         map.setZoom(17);
+    //     }
+    // });
