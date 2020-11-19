@@ -59,12 +59,19 @@ var TxtType = function(el, toRotate, period) {
 //API connection for products from EDEKA
 const contentDiv = document.getElementById('content');
 const apiUrl = 'https://www.edeka.de/eh/service/eh/offers';
+let htmlRepresentation = ""; 
 
 fetch(apiUrl)
-  .then(response => response.json())
-  .then(content => {
-      let htmlRepresentation = "";  
-      content.docs.forEach(element => {
+    .then(response => response.json())
+    .then(data => {
+            displayProducts(data)
+    })
+    .catch((error) => {
+        console.error('Error:', error);
+    });
+
+function displayProducts(data) {
+    data.docs.forEach(element => {
         htmlRepresentation += `
         <div class="item">
             <div class="class="col-sm-12 col-lg-6">
@@ -76,7 +83,7 @@ fetch(apiUrl)
                     </div>
                     <ul class="list-group list-group-flush">
                     <li class="list-group-item font-weight-bold">Price: <span class="text-danger h4">${element.preis} Euro</span></spand></li>
-                    <li class="list-group-item text-muted">Basic Price: <span class="text-danger">${element.basicPrice}</span></spand></li>
+                    <li class="list-group-item list-price text-muted" id="basic-price">Basic Price: <span class="text-danger">${element.basicPrice}</span></spand></li>
                     </ul>
                     <div class="card-body">
                     <a href="#" class="card-link">Add to Basket</a>
@@ -86,47 +93,72 @@ fetch(apiUrl)
         </div>
       `;
       });
-      return htmlRepresentation;
-  })
-  .then(htmlRepresetation =>{
-        contentDiv.innerHTML = htmlRepresetation;
-            //Owl Carousel Creation
-            $('.owl-carousel').owlCarousel({
-                autoplay: true,
-                autoplayHoverPause: true,
-                margin: 10,
-                stagePadding: 5,
-                nav: true,
-                loop: true,
-                navText: [
-                    "<i class='fa fa-chevron-left fa-2x'></i>",
-                    "<i class='fa fa-chevron-right fa-2x'></i>"
-                    ],
-                responsive:{
-                    0: {
-                        items: 1,
-                    }, 
-                    485: {
-                        items: 2,
-                    },
-                    728: {
-                        items:3,        
-                    },
-                    960: {
-                        items:3,
-                    },
-                    1200: {
-                        items:5,
-                    }
-                }
-            });
-            $('owl-carousel').on('mousewheel', 'owl-stage', function(e){
-                if(e.deltaY>0) {
-                    $('.owl-carousel').trigger('next-owl');
-                } else  {
-                    $('owl-carousel').trigger('prev.owl');
-                }
-                    e.preventDefault();
-            });
-});
- 
+    contentDiv.innerHTML = htmlRepresentation;
+    creationOwlCarousel ();
+    hideNullElement();
+    
+}
+
+function creationOwlCarousel () {
+    //Owl Carousel Creation
+    $('.owl-carousel').owlCarousel({
+        autoplay: true,
+        autoplayHoverPause: true,
+        margin: 10,
+        stagePadding: 5,
+        nav: true,
+        loop: true,
+        navText: [
+            "<i class='fa fa-chevron-left fa-2x'></i>",
+            "<i class='fa fa-chevron-right fa-2x'></i>"
+            ],
+        responsive:{
+            0: {
+                items: 1,
+            }, 
+            485: {
+                items: 2,
+            },
+            728: {
+                items:3,        
+            },
+            960: {
+                items:3,
+            },
+            1200: {
+                items:5,
+            }
+        }
+    });
+    $('owl-carousel').on('mousewheel', 'owl-stage', function(e){
+        if(e.deltaY>0) {
+            $('.owl-carousel').trigger('next-owl');
+        } else  {
+            $('owl-carousel').trigger('prev-owl');
+        }
+            e.preventDefault();
+    });
+}
+
+
+// let liNull = document.querySelectorAll('.list'), i;
+// console.log(liNull);
+
+
+// const liNull = document.querySelectorAll('.list-price');
+// console.log(liNull);
+
+/*Hiding empty element */
+function hideNullElement() {
+    const liNull = document.querySelectorAll('.list-price');
+    //console.log(liNull);
+    liNull.forEach(function(nullPrice) {
+        nullPrice = document.getElementById('basic-price');
+        console.log(nullPrice);
+        if (nullPrice.value != null) {
+            nullPrice.style.display = 'block';
+        } else {
+            nullPrice.style.display = 'none';
+        };
+    });
+};

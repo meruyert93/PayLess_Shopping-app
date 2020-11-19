@@ -1,6 +1,7 @@
 let markers = [];
 let infoWindow;
 let map;
+let input = document.getElementById('inputValue');
 
 /**Connecting Map Location API  */
 /*Creating google map*/
@@ -18,27 +19,25 @@ function initMap() {
 searchMarketsNear('München, Deutschland');
 
 /*Triggering Button when Enter is pressed */
-function triggerBtn() {
-    input = document.getElementById('inputValue');
-    input.addEventListener("keyup", function(event) {
-        if (event.keyCode === 13) {
-            event.preventDefault();
-            document.getElementById("myBtn").click();
+function triggerFunction() {
+    input.addEventListener("keyup", function(e) {
+        if (e.key === 'Enter') {
+            searchMarketsNear(input.value);
         }
     });
 }
 
 /*Searching markets by ZIP code or region */
 function searchMarketsNear(searchedPlace) {
-    input = document.getElementById('inputValue').value;
-    if (input !== null && input !== '') {
-        searchedPlace = input;
+    inputForSearch = input.value;
+    if (inputForSearch !== '') {
+        searchedPlace = inputForSearch;
     } else {
         searchedPlace = 'München, Deutschland';
     }
     
-    const LocationApiUrl = `https://www.edeka.de/api/marketsearch/markets?searchstring=${searchedPlace}&size=124`;
-    fetch(LocationApiUrl)
+    const locationApiUrl = `https://www.edeka.de/api/marketsearch/markets?searchstring=${searchedPlace}&size=124`;
+    fetch(locationApiUrl)
         .then(response => response.json())
         .then(data => {
             /*Calling functions */
@@ -47,7 +46,7 @@ function searchMarketsNear(searchedPlace) {
             showStoresMarker(data);
             setOnClickListener();
             autoCompleteInSearch()
-            triggerBtn();
+            triggerFunction();
         })
         .catch((error) => {
             console.error('Error:', error);
@@ -175,17 +174,16 @@ function setOnClickListener() {
 }
 
 function autoCompleteInSearch()  {
-    let input = document.getElementById('inputValue');
     let autocomplete = new google.maps.places.Autocomplete(input);
-        autocomplete.bindTo('bounds', map);
+            autocomplete.bindTo('bounds', map);
 };
 
 function clearLocations() {
     infoWindow.close();
-    for (var i = 0; i < markers.length; i++) {
-    markers[i].setMap(null);
+        for (let i = 0; i < markers.length; i++) {
+            markers[i].setMap(null);
     }
-    markers.length = 0;
+            markers = [];
 }
 
 /**ATTENTION! CODE belo is just temporary stored, it will be deleted */
