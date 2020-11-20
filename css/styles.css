@@ -24,6 +24,16 @@ body {
     color: #17252a;
 }
 
+/*Button on index html*/
+.btn-outline-secondary {
+    background-color: #2B7A78; /*formatting goes here*/
+    color: white;
+}
+.btn-outline-secondary:hover{
+    background-color: #F3C52B;/*formatting goes here*/
+    color: black;
+}
+
 /*Owl Carousel Design*/
 .owl-prev,
 .owl-next {
@@ -181,6 +191,15 @@ body {
 
 #sticky-footer {
   flex-shrink: none;
+}
+
+/*Hidden List with Null  */
+.yesList {
+    visibility: visible;
+}
+
+.noList {
+    visibility: hidden;
 }
 
 

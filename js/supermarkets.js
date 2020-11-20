@@ -17,25 +17,24 @@ function initMap() {
 }
 
 searchMarketsNear('München, Deutschland');
+clickmyBtn();
 
-/*Triggering Button when Enter is pressed */
-function triggerFunction() {
-    input.addEventListener("keyup", function(e) {
-        if (e.key === 'Enter') {
+/*Triggering Function when Enter is pressed */
+input.addEventListener("keyup", function(e) {
+        if (e.key === 'Enter' && input.value !== '') {
             searchMarketsNear(input.value);
         }
-    });
+});
+
+//Adding eventListener to my Button
+function clickmyBtn () {
+    document.getElementById("myBtn").addEventListener("click", function() {
+        searchMarketsNear(input.value);
+    })
 }
 
 /*Searching markets by ZIP code or region */
 function searchMarketsNear(searchedPlace) {
-    inputForSearch = input.value;
-    if (inputForSearch !== '') {
-        searchedPlace = inputForSearch;
-    } else {
-        searchedPlace = 'München, Deutschland';
-    }
-    
     const locationApiUrl = `https://www.edeka.de/api/marketsearch/markets?searchstring=${searchedPlace}&size=124`;
     fetch(locationApiUrl)
         .then(response => response.json())
@@ -46,7 +45,6 @@ function searchMarketsNear(searchedPlace) {
             showStoresMarker(data);
             setOnClickListener();
             autoCompleteInSearch()
-            triggerFunction();
         })
         .catch((error) => {
             console.error('Error:', error);
@@ -70,7 +68,7 @@ function displayStores(data) {
         citySupermarket = data.markets[i].contact.address.city.name;
         urlSupermarket = data.markets[i].url;
         phoneSupermarket = data.markets[i].contact.phoneNumber;
-
+    
         storesHTML +=  `
             <div class="store-container">
                 <div class="store-info-container">
@@ -118,7 +116,7 @@ function showStoresMarker(data) {
         addressSupermarket = data.markets[i].contact.address.street;
         phoneSupermarket = data.markets[i].contact.phoneNumber;
         bounds.extend(latLng);
-    
+
         createMarker(latLng, nameSupermarket, addressSupermarket, phoneSupermarket, position);
     }
     map.fitBounds(bounds);
@@ -158,9 +156,7 @@ function createMarker(latlng, nameSupermarket, addressSupermarket, phoneSupermar
         infoWindow.setContent(html);
         infoWindow.open(map, marker);
     } )
-
     markers.push(marker);
-
 };
 
 /*Triggering Info Window on the google map */
@@ -186,7 +182,7 @@ function clearLocations() {
             markers = [];
 }
 
-/**ATTENTION! CODE belo is just temporary stored, it will be deleted */
+/**ATTENTION! CODE below is just temporary stored, it will be deleted */
 
 /**Temporary stored commented code for future using to display wether the store open or now */
     // const options = { weekday: 'long' };
