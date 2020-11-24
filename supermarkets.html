@@ -36,7 +36,7 @@
         </div>
     </nav>
 
-    <header class="jumbotron jumbotron-fluid">
+    <header class="jumbotron jumbotron-fluid mb-0">
         <div class="container"> 
             <div class="row d-flex align-items-center justify-content-around">
                 <div class="col-4 col-xs-12">
@@ -58,9 +58,9 @@
         </div>
     </header>
 
-    <div class="container-fluid mb-5">
+    <div class="container-fluid" style="background-color: #FFF8C1; height: 800px;">
         <div class="row ">
-            <div class="col-4 mr-5 ml-5" style="background-color: #ddd; height: 750px; width:100%" >
+            <div class="col-4 mr-5 ml-5" style="background-color: transparent; height: 750px; width:100%" >
                 <div class="col-lg-12 col-sm-12 search-container"> 
                     <div class="search"> 
                         <input class="form-control mr-sm-2" type="search" placeholder="Enter your zip code or region" aria-label="Search" id="inputValue">
@@ -70,7 +70,7 @@
 
                 <div class="col-lg-12 col-sm-12 stores-list-container">
                     <div class="stores-list" id="stores-list">
-                        <div class="store-container">
+                        <!-- <div class="store-container">
                             <div class="store-info-container">
                                 <div class="store-name font-weight-bold text-large">
                                     <span>Store Name</span>
@@ -97,13 +97,13 @@
                                     1
                                 </div>
                             </div>
-                        </div>
+                        </div> -->
                     </div>
                 </div>
 
             </div>
-            <div class="col-7" style="background-color: darkgrey; height: 750px; width:100%" >
-                <div id="map" class="w-100" style="height: 750px;">
+            <div class="col-7 mt-3" style="background-color: transparent; height: 750px; width:100%" >
+                <div id="map" class="w-100 border border-success rounded" style="height: 750px;">
                 </div>
             </div>
         </div>

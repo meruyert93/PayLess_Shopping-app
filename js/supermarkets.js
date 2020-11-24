@@ -17,21 +17,19 @@ function initMap() {
 }
 
 searchMarketsNear('München, Deutschland');
-clickmyBtn();
+// addEventListenerToInput ();
 
 /*Triggering Function when Enter is pressed */
 input.addEventListener("keyup", function(e) {
-        if (e.key === 'Enter' && input.value !== '') {
-            searchMarketsNear(input.value);
-        }
+    if (e.key === 'Enter' && input.value !== '') {
+        searchMarketsNear(input.value);
+    }
 });
 
-//Adding eventListener to my Button
-function clickmyBtn () {
-    document.getElementById("myBtn").addEventListener("click", function() {
+//Adding eventListener to Input
+    input.addEventListener('input', function() {
         searchMarketsNear(input.value);
     })
-}
 
 /*Searching markets by ZIP code or region */
 function searchMarketsNear(searchedPlace) {
@@ -89,7 +87,7 @@ function displayStores(data) {
                 <div class="store-number-container">
                     <div class="website"> 
                         <span>
-                            <a href="${urlSupermarket}"><i class="fa fa-globe fa-2x"></i></a>
+                            <a href="${urlSupermarket}" target="_blank"><i class="fa fa-globe fa-2x"></i></a>
                         </span>
                     </div>
                     <div class = "store-number">
@@ -180,65 +178,5 @@ function clearLocations() {
             markers[i].setMap(null);
     }
             markers = [];
+            storesHTML = [];
 }
-
-/**ATTENTION! CODE below is just temporary stored, it will be deleted */
-
-/**Temporary stored commented code for future using to display wether the store open or now */
-    // const options = { weekday: 'long' };
-    // var today = new Date().toLocaleTimeString('en-DE', options);
-    // console.log(today);
-    // if (today == object.markets[0].businessHours.sunday) {
-    //     console.log('Currently open')
-    // } else {
-    //     console.log('Currently closed')
-    // }
-
-// function searchstores(data) {
-//     // let foundStores = [];
-//     let inputValue = document.getElementById('inputValue').value;
-//     // console.log(inputValue);
-//     for (let i = 0; i < data.markets.length; i++) {
-//     }
-// };
-
-// function processButtonSearch() {
-//     let button = document.getElementById('searchbutton');
-//         button.addEventListener('click', function() {
-//             geocodeAddress(map);
-//         });       
-//     };
-    
-// function geocodeAddress(resultsMap) {
-//     const geocoder = new google.maps.Geocoder();
-//     var address = document.getElementById('inputValue').value;
-//     geocoder.geocode({'address': address}, function(results, status) {
-//         if (status === 'OK') {
-//             resultsMap.setCenter(results[0].geometry.location);
-//             // new google.maps.Marker({
-//             //   map: resultsMap,
-//             //   position: results[0].geometry.location
-//             // });
-//         } else {
-//             alert('Geocode was not successful for the following reason: ' + status);
-//         }
-//     });
-// }
-
-/**part of the Function for autoCompleteInSearch()  */
-   // Listen for the event fired when the user selects a prediction and retrieve
-    // more details for that place.
-    //     autocomplete.addListener("places_changed", function () {
-    //     let place = autocomplete.getPlaces();
-    //     if (!place.geometry) {
-    //         window.alert("Autocomplete's returned place contains no geomtery");
-    //         return;
-    //     }
-    //     //if the place has a geometry,then present it on a map
-    //     if(place.geometry.viewport) {
-    //         map.fitBounds(place.geometry.viewport);
-    //     } else {
-    //         map.setCenter(place.geometry.location);
-    //         map.setZoom(17);
-    //     }
-    // });

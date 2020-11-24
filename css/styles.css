@@ -59,7 +59,7 @@ body {
     position: absolute;
     z-index: 30;
     top: 20px;
-    left: 10px;
+    left: 20px;
     border-radius: 30px;
 }
 
@@ -74,7 +74,8 @@ body {
 .stores-list-container {
     width: 650px;
     /* height: 400px; */
-    background-color: white;
+    background-color: #454E53;
+    color: white;
     position: absolute;
     z-index: 30;
     top: 100px;
@@ -94,10 +95,12 @@ body {
     display: flex;
     border-bottom: 1px solid #979797;
     cursor: pointer;
+    border-radius: 10px;
 }
 
 .store-container:hover {
-    background-color: #eeeeee; 
+    background-color: #eeeeee;
+    color: black; 
 }
 
 .store-info-container {
@@ -136,12 +139,13 @@ body {
     width: 30px;
     height: 30px;
     border-radius: 50%;
-    background-color: #454E53;
-    color: white;
+    background-color: #DEF2F1;
+    color: black;
     display: flex;
     justify-content: center;
     align-items: center;
     align-self: center;
+    border: 1px solid #454E53;
 }
 
 .stores-address span {
@@ -194,12 +198,13 @@ body {
 }
 
 /*Hidden List with Null  */
-.yesList {
-    visibility: visible;
-}
 
-.noList {
+.hidden {
     visibility: hidden;
 }
 
+.scroll {
+    max-height: 100px;
+    overflow-y: auto;
+}
 

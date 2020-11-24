@@ -77,13 +77,13 @@ function displayProducts(data) {
             <div class="card-group" style="height: 69vh">
                 <div class="card h-100" style="width: 18rem;">
                     <img src=${element.bild_app} class="card-img-top"  alt="Card image cap">
-                    <div class="card-body h-100">
+                    <div class="card-body scroll h-100">
                     <h5 class="card-title">${element.titel}</h5>
                     <p class="card-text">${element.beschreibung}</p>
                     </div>
                     <ul class="list-group list-group-flush">
                     <li class="list-group-item font-weight-bold">Price: <span class="text-danger h4">${element.preis} Euro</span></spand></li>
-                    <li class="list-group-item text-muted ${element.basicPrice ? "yesList" : "noList" }">Basic Price: <span class="text-danger">${element.basicPrice}</span></spand></li>
+                    <li class="list-group-item text-muted ${element.basicPrice ? "" : "hidden" }">Basic Price: <span class="text-danger">${element.basicPrice}</span></spand></li>
                     </ul>
                     <div class="card-body">
                     <a href="#" class="card-link">Add to Basket</a>
