@@ -42,7 +42,7 @@ function searchMarketsNear(searchedPlace) {
             displayStores(data);
             showStoresMarker(data);
             setOnClickListener();
-            autoCompleteInSearch()
+            autoCompleteInSearch();
         })
         .catch((error) => {
             console.error('Error:', error);
@@ -56,6 +56,7 @@ let zipCodeSupermarket;
 let citySupermarket;
 let urlSupermarket;
 let phoneSupermarket;
+let marketID;
 
 /*Displaying Supermarkets as a list in the container */
 function displayStores(data) {
@@ -66,12 +67,15 @@ function displayStores(data) {
         citySupermarket = data.markets[i].contact.address.city.name;
         urlSupermarket = data.markets[i].url;
         phoneSupermarket = data.markets[i].contact.phoneNumber;
+        marketID = data.markets[i].id;
+
+        //console.log(marketID);
     
         storesHTML +=  `
             <div class="store-container">
                 <div class="store-info-container">
                     <div class="store-name font-weight-bold text-large">
-                        <span>${nameSupermarket}</span>
+                        <span class="nameSupermarket">${nameSupermarket}</span>
                     </div>
                     <div class="store-address">
                         <span>${addressSupermarket},</span>
@@ -163,8 +167,11 @@ function setOnClickListener() {
     storeElements.forEach(function(elem, index){
         elem.addEventListener('click', function(){
             google.maps.event.trigger(markers[index], 'click');
+           // console.log(marketID);
         })
     });
+    
+
 }
 
 function autoCompleteInSearch()  {
@@ -179,4 +186,12 @@ function clearLocations() {
     }
             markers = [];
             storesHTML = [];
+}
+// let marketID;
+
+function OffersInSupermarket(data) {
+    marketID = data.markets[i].marketID
+    for ( let i = 0; i < data.markets.length; i++) {
+        console.log(marketID);
+    }
 }
