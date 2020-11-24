@@ -17,7 +17,6 @@ function initMap() {
 }
 
 searchMarketsNear('München, Deutschland');
-// addEventListenerToInput ();
 
 /*Triggering Function when Enter is pressed */
 input.addEventListener("keyup", function(e) {
@@ -27,9 +26,9 @@ input.addEventListener("keyup", function(e) {
 });
 
 //Adding eventListener to Input
-    input.addEventListener('input', function() {
-        searchMarketsNear(input.value);
-    })
+input.addEventListener('input', function() {
+    searchMarketsNear(input.value);
+});
 
 /*Searching markets by ZIP code or region */
 function searchMarketsNear(searchedPlace) {
@@ -177,6 +176,6 @@ function clearLocations() {
         for (let i = 0; i < markers.length; i++) {
             markers[i].setMap(null);
     }
-            markers = [];
-            storesHTML = [];
-}
+    markers = [];
+    storesHTML = [];
+};

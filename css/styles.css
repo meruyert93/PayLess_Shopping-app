@@ -24,13 +24,53 @@ body {
     color: #17252a;
 }
 
+/*Container find all discounts*/
+.container-discounts {
+    background-size: 100%;
+    max-width: 100%;
+}
+
+.container-sub-discounts {
+    background-size: 100%;
+    max-width: 100%;
+    background-image:url("../images/bag.jpg");
+    height: 500px;
+    background-repeat: no-repeat;
+}
+
+.container-search-now {
+    max-width: 100%;
+}
+
+.container-sub-search-now {
+    height: 150px;
+    display:block;
+    background-image: radial-gradient(circle, #eab816, #c0d45f, #a8e6a2, #b2efd7, #def2f1);
+}
+
+.badge {
+    color: white;
+    background-color: #2B7A78;
+}
+
+.badge:hover {
+    color: black;
+    background-color: #D2F1EA;
+}
+
+.container-products {
+    max-width: 95%;
+    display:block;
+}
+
 /*Button on index html*/
 .btn-outline-secondary {
-    background-color: #2B7A78; /*formatting goes here*/
+    background-color: #2B7A78; 
     color: white;
 }
+
 .btn-outline-secondary:hover{
-    background-color: #F3C52B;/*formatting goes here*/
+    background-color: #F3C52B;
     color: black;
 }
 
@@ -51,6 +91,17 @@ body {
 }
 
 /*Supermarkets list*/     
+.main-search-container {
+    background-color: #FFF8C1;
+    height: 800px;
+}
+
+.main-search-sub-container {
+    background-color: transparent; 
+    height: 750px;
+    width:100%;
+}
+
 /*Searching place*/
 .search-container {
     width: 650px;
@@ -73,7 +124,6 @@ body {
 
 .stores-list-container {
     width: 650px;
-    /* height: 400px; */
     background-color: #454E53;
     color: white;
     position: absolute;
@@ -121,7 +171,6 @@ body {
 
 .store-number-container {
     display: flex;
-    /* background-color: blueviolet; */
     flex-direction: column;
     justify-content: space-evenly;
 }
@@ -130,7 +179,6 @@ body {
     width: 30px;
     height:30px;
     display:flex;
-    /* background-color: red; */
     align-self: flex-start;
     justify-content: center;
 }
@@ -198,13 +246,23 @@ body {
 }
 
 /*Hidden List with Null  */
-
 .hidden {
     visibility: hidden;
 }
 
+/*Scrolling the description of the products in the carousel*/
 .scroll {
     max-height: 100px;
     overflow-y: auto;
 }
 
+/*Container map*/
+.container-map {
+    background-color: transparent;
+    height: 750px;
+    width:100%
+}
+
+.container-sub-map {
+    height: 750px;
+}
