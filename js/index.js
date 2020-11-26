@@ -138,5 +138,27 @@ function creationOwlCarousel () {
     });
 };
 
+/**Coding section for Cards */
 
+let removerCartItemButtons = document.getElementsByClassName('btn-danger');
+//console.log(removerCartItemButtons);
+for (let i = 0; i < removerCartItemButtons.length; i++){
+    let button = removerCartItemButtons[i];
+    button.addEventListener('click', function(e) {
+        let buttonClicked = e.target
+        buttonClicked.parentElement.parentElement.remove()
+        updateCartTotal();
 
+    });
+}
+
+function updateCartTotal() {
+    let cartItemContainer = document.getElementsByClassName('cart-items')[0]
+    let cartRows = cartItemContainer.getElementsByClassName('cart-row')
+    for (let i = 0; i<cartRows.length; i++) {
+        let cartRow = cartRows[i]
+        let priceElement = cartRow.getElementsByClassName('cart-price')[0]
+        let quantityElement = cartRow.getElementsByClassName('cart-quantity-input')
+        console.log(priceElement, quantityElement);
+    }
+}
