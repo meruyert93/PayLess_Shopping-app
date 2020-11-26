@@ -86,7 +86,7 @@ function displayProducts(data) {
                     <li class="list-group-item text-muted ${element.basicPrice ? "" : "hidden" }">Basic Price: <span class="text-danger">${element.basicPrice}</span></spand></li>
                     </ul>
                     <div class="card-body">
-                    <a href="#" class="card-link">Add to Basket</a>
+                    <a href="#" class="card-link add-to-cart" data-name="${element.titel}" data-price="${element.preis}">Add to Basket</a>
                     </div>
                 </div>
             </div>
@@ -137,3 +137,6 @@ function creationOwlCarousel () {
             e.preventDefault();
     });
 };
+
+
+
