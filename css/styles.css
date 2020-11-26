@@ -1,18 +1,15 @@
+/*General Design*/
 .jumbotron {
     background-color:#DEF2f1 ;
     /* padding: 5em inherit !important;  */
     padding-top: 10 !important;
-    padding-bottom: 5px !important;
-    
+    padding-bottom: 5px !important;  
 }
 
 nav {
     background-color: #2b7a78;
     color: #8E8C89;
 }
-
-.typewrite {
-    color: #17252a;
 
 body {
     background-color: #ffffff;
@@ -22,6 +19,250 @@ body {
     color: #2b7a78;
 }
 
+/*Animation text design*/
+.typewrite {
+    color: #17252a;
+}
 
+/*Container find all discounts*/
+.container-discounts {
+    background-size: 100%;
+    max-width: 100%;
+}
 
+.container-sub-discounts {
+    background-size: 100%;
+    max-width: 100%;
+    background-image:url("../images/bag.jpg");
+    height: 500px;
+    background-repeat: no-repeat;
+}
 
+.container-search-now {
+    max-width: 100%;
+}
+
+.container-sub-search-now {
+    height: 150px;
+    display:block;
+    background-image: radial-gradient(circle, #eab816, #c0d45f, #a8e6a2, #b2efd7, #def2f1);
+}
+
+.badge {
+    color: white;
+    background-color: #2B7A78;
+}
+
+.badge:hover {
+    color: black;
+    background-color: #D2F1EA;
+}
+
+.container-products {
+    max-width: 95%;
+    display:block;
+}
+
+/*Button on index html*/
+.btn-outline-secondary {
+    background-color: #2B7A78; 
+    color: white;
+}
+
+.btn-outline-secondary:hover{
+    background-color: #F3C52B;
+    color: black;
+}
+
+/*Owl Carousel Design*/
+.owl-prev,
+.owl-next {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+.owl-prev {
+    left: -2rem;
+}
+
+.owl-next {
+    right: -2rem;
+}
+
+/*Supermarkets list*/     
+.main-search-container {
+    background-color: #FFF8C1;
+    height: 800px;
+}
+
+.main-search-sub-container {
+    background-color: transparent; 
+    height: 750px;
+    width:100%;
+}
+
+/*Searching place*/
+.search-container {
+    width: 650px;
+    height: 60px;
+    background-color: #454e53;
+    position: absolute;
+    z-index: 30;
+    top: 20px;
+    left: 20px;
+    border-radius: 30px;
+}
+
+.search {
+    height: 100%;
+    display: flex;
+    align-items: center;
+    padding-left: 20px;
+    padding-right: 20px
+}
+
+.stores-list-container {
+    width: 650px;
+    background-color: #454E53;
+    color: white;
+    position: absolute;
+    z-index: 30;
+    top: 100px;
+    left: 20px;
+    border-radius: 30px;
+    bottom: 20px;
+}
+
+.stores-list {
+    padding-left: 20px;
+    padding-right: 20px;
+    overflow-y: scroll;
+    height:100%
+}
+
+.store-container {
+    display: flex;
+    border-bottom: 1px solid #979797;
+    cursor: pointer;
+    border-radius: 10px;
+}
+
+.store-container:hover {
+    background-color: #eeeeee;
+    color: black; 
+}
+
+.store-info-container {
+    flex-grow: 1;
+}
+
+.stores-address {
+    font-size: 21px;
+    color: #514C4C;
+    margin-top: 30px;
+}
+
+.store-phone-number {
+    color: #B5ADAD;
+    margin-top: 15px;
+    margin-bottom: 15px;
+}
+
+.store-number-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+}
+
+.website{
+    width: 30px;
+    height:30px;
+    display:flex;
+    align-self: flex-start;
+    justify-content: center;
+}
+
+.store-number {
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    background-color: #DEF2F1;
+    color: black;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    align-self: center;
+    border: 1px solid #454E53;
+}
+
+.stores-address span {
+        display:block
+}
+
+.text-large  {
+    font-size: 120%;
+}
+
+/*Info window for stores*/
+.store-info-window {
+    min-width: 300px;
+    font-size: 18px;
+    padding: 8px;
+}
+
+.store-info-name {
+    font-size: 24px;
+    font-weight: bold;
+    color: rgba(0,0,0, 0.87);
+}
+
+.store-info-status {
+    margin-top: 6px;
+    border-bottom: 1px solid #00000029;
+    padding-bottom: 6px;
+}
+
+.store-info-address, .store-info-phone {
+    margin-top: 8px;
+    display: flex;
+    align-items: center;
+}
+
+.store-info-address .circle, .store-info-phone .circle {
+    width: 30px;
+    height: 30px;
+    background-color: #1985A1;
+    border-radius: 50%;
+    color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-right: 8px;
+}
+
+#sticky-footer {
+  flex-shrink: none;
+}
+
+/*Hidden List with Null  */
+.hidden {
+    visibility: hidden;
+}
+
+/*Scrolling the description of the products in the carousel*/
+.scroll {
+    max-height: 100px;
+    overflow-y: auto;
+}
+
+/*Container map*/
+.container-map {
+    background-color: transparent;
+    height: 750px;
+    width:100%
+}
+
+.container-sub-map {
+    height: 750px;
+}
