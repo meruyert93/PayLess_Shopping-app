@@ -76,17 +76,17 @@ function displayProducts(data) {
         <div class="item">
             <div class="card-group" style="height: 69vh">
                 <div class="card h-100" style="width: 18rem;">
-                    <img src=${element.bild_app} class="card-img-top"  alt="Card image cap">
+                    <img src=${element.bild_app} class="card-img-top cart-item-image"  alt="Card image cap">
                     <div class="card-body scroll h-100">
-                    <h5 class="card-title">${element.titel}</h5>
+                    <h5 class="card-title product-item-title">${element.titel}</h5>
                     <p class="card-text">${element.beschreibung}</p>
                     </div>
                     <ul class="list-group list-group-flush">
-                    <li class="list-group-item font-weight-bold">Price: <span class="text-danger h4">${element.preis} Euro</span></spand></li>
+                    <li class="list-group-item font-weight-bold product-item-price">Price: <span class="text-danger h4">${element.preis} Euro</span></spand></li>
                     <li class="list-group-item text-muted ${element.basicPrice ? "" : "hidden" }">Basic Price: <span class="text-danger">${element.basicPrice}</span></spand></li>
                     </ul>
                     <div class="card-body">
-                    <a href="#" class="card-link add-to-cart" data-name="${element.titel}" data-price="${element.preis}">Add to Basket</a>
+                    <button class="btn btn-primary add-to-cart" type="button">ADD TO Basket</button>
                     </div>
                 </div>
             </div>
@@ -95,6 +95,7 @@ function displayProducts(data) {
     });
     contentDiv.innerHTML = htmlRepresentation;
     creationOwlCarousel ();
+    ready();
 };
 
 function creationOwlCarousel () {
@@ -139,7 +140,6 @@ function creationOwlCarousel () {
 };
 
 /**Coding section for Cards */
-
 if (document.readyState == 'loading') {
     document.addEventListener('DOMContentLoaded', ready)
 } else {
@@ -159,6 +159,12 @@ function ready() {
         let input = quantityInputs[i];
         input.addEventListener('change', quantityChanged);
     }
+
+    let addToCartButtons = document.getElementsByClassName('add-to-cart')
+    for (let i = 0; i < addToCartButtons.length; i++) {
+        let button = addToCartButtons[i];
+        button.addEventListener('click', addToCartClicked);
+    }
 }
 
 function removeCartItem(e) {
@@ -175,6 +181,15 @@ function quantityChanged(e) {
     updateCartTotal();
 }
 
+function addToCartClicked(e) {
+    let button = e.target;
+    let productItem = button.parentElement.parentElement.parentElement.parentElement;
+    let title = productItem.getElementsByClassName('product-item-title')[0].innerText;
+    let price = productItem.getElementsByClassName('product-item-price')[0].innerText;
+    let imageSrc = productItem.getElementsByClassName('cart-item-image')[0].src
+    console.log(title, price, imageSrc);
+}
+
 function updateCartTotal() {
     let cartItemContainer = document.getElementsByClassName('cart-items')[0]
     let cartRows = cartItemContainer.getElementsByClassName('cart-row')
@@ -183,9 +198,10 @@ function updateCartTotal() {
         let cartRow = cartRows[i]
         let priceElement = cartRow.getElementsByClassName('cart-price')[0]
         let quantityElement = cartRow.getElementsByClassName('cart-quantity-input')[0]
-        let price = parseFloat(priceElement.innerText.replace('$', ''));
+        let price = parseFloat(priceElement.innerText.replace('Euro', ''));
         let quantity = quantityElement.value
         total = total + (price *quantity)
     }
+    total = Math.round(total*100) / 100;
     document.getElementsByClassName('cart-total-price')[0].innerText = total + ' Euro';
 }
