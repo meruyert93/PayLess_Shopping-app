@@ -140,16 +140,39 @@ function creationOwlCarousel () {
 
 /**Coding section for Cards */
 
-let removerCartItemButtons = document.getElementsByClassName('btn-danger');
-//console.log(removerCartItemButtons);
-for (let i = 0; i < removerCartItemButtons.length; i++){
-    let button = removerCartItemButtons[i];
-    button.addEventListener('click', function(e) {
-        let buttonClicked = e.target
-        buttonClicked.parentElement.parentElement.remove()
-        updateCartTotal();
+if (document.readyState == 'loading') {
+    document.addEventListener('DOMContentLoaded', ready)
+} else {
+    ready();
+}
 
-    });
+function ready() {
+    let removerCartItemButtons = document.getElementsByClassName('btn-danger');
+    //console.log(removerCartItemButtons);
+    for (let i = 0; i < removerCartItemButtons.length; i++){
+        let button = removerCartItemButtons[i];
+        button.addEventListener('click', removeCartItem);
+    }
+
+    let quantityInputs = document.getElementsByClassName('cart-quantity-input');
+    for (let i = 0; i < quantityInputs.length; i++) {
+        let input = quantityInputs[i];
+        input.addEventListener('change', quantityChanged);
+    }
+}
+
+function removeCartItem(e) {
+    let buttonClicked = e.target
+    buttonClicked.parentElement.parentElement.remove()
+    updateCartTotal();
+}
+
+function quantityChanged(e) {
+    let input = e.target
+    if (isNaN(input.value) || input.value <= 0) {
+        input.value = 1
+    } 
+    updateCartTotal();
 }
 
 function updateCartTotal() {
@@ -164,5 +187,5 @@ function updateCartTotal() {
         let quantity = quantityElement.value
         total = total + (price *quantity)
     }
-    document.getElementsByClassName('cart-total-price')[0].innerText = total;
+    document.getElementsByClassName('cart-total-price')[0].innerText = total + ' Euro';
 }
