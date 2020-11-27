@@ -252,7 +252,7 @@ body {
 
 /*Scrolling the description of the products in the carousel*/
 .scroll {
-    max-height: 100px;
+    max-height: 150px;
     overflow-y: auto;
 }
 
@@ -368,4 +368,33 @@ body {
     display: block;
     margin: 40px auto 80px auto;
     font-size: 1.75em;
+}
+
+/*Modal Styling*/
+.modal-header {
+    background-color: #2b7a78;
+    color: white;
+}
+
+.modal-footer {
+    background-color: #2b7a78;
+    color: white;
+}
+
+.btn-purchase {
+    color: white;
+    background-color: #2B7A78;
+}
+
+.btn-purchase:hover {
+    color: black;
+    background-color: #D2F1EA;
+}
+
+.btn-warning {
+    background-color: #F3C42A;
+}
+
+.add-to-cart {
+    border-radius: 50%;
 }

@@ -74,10 +74,10 @@ function displayProducts(data) {
     data.docs.forEach(element => {
         htmlRepresentation += `
         <div class="item">
-            <div class="card-group" style="height: 69vh">
-                <div class="card h-100" style="width: 18rem;">
+            <div class="card-group" style="height: 40rem">
+                <div class="card" style="width: 18rem;">
                     <img src=${element.bild_app} class="card-img-top cart-item-image"  alt="Card image cap">
-                    <div class="card-body scroll h-100">
+                    <div class="card-body scroll h-50">
                     <h5 class="card-title product-item-title">${element.titel}</h5>
                     <p class="card-text">${element.beschreibung}</p>
                     </div>
@@ -85,8 +85,8 @@ function displayProducts(data) {
                     <li class="list-group-item font-weight-bold">Price: <span class="text-danger h4 product-item-price">${element.preis} Euro</span></spand></li>
                     <li class="list-group-item text-muted ${element.basicPrice ? "" : "hidden" }">Basic Price: <span class="text-danger">${element.basicPrice}</span></spand></li>
                     </ul>
-                    <div class="card-body">
-                    <button class="btn btn-primary add-to-cart" type="button">ADD TO Basket</button>
+                    <div class="card-footer">
+                    <button class="btn btn-outline-success add-to-cart text-center" type="button">Add to Cart</button>
                     </div>
                 </div>
             </div>
@@ -101,7 +101,7 @@ function displayProducts(data) {
 function creationOwlCarousel () {
     //Owl Carousel Creation
     $('.owl-carousel').owlCarousel({
-        autoplay: true,
+        autoplay: false,
         autoplayHoverPause: true,
         margin: 10,
         stagePadding: 5,
@@ -170,8 +170,14 @@ function ready() {
 }
 
 function purchaseClicked() {
-    alert('Thank you for your purchase!')
     let cartItems = document.getElementsByClassName('cart-items')[0]
+    if (cartItems.firstChild || cartItems.childNodes.length ) {
+        alert('Thank you for your purchase!');
+        
+    } else {
+        alert('You did not add products yet');
+    }
+
     while ( cartItems.hasChildNodes()) {
         cartItems.removeChild(cartItems.firstChild);
     }
