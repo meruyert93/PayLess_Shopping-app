@@ -364,7 +364,7 @@ body {
     font-size: 1.1em;
 }
 
-.btn-purchase {
+.btn-clear {
     display: block;
     margin: 40px auto 80px auto;
     font-size: 1.75em;
@@ -381,12 +381,12 @@ body {
     color: white;
 }
 
-.btn-purchase {
+.btn-clear {
     color: white;
     background-color: #2B7A78;
 }
 
-.btn-purchase:hover {
+.btn-clear:hover {
     color: black;
     background-color: #D2F1EA;
 }
@@ -398,3 +398,4 @@ body {
 .add-to-cart {
     border-radius: 50%;
 }
+

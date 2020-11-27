@@ -86,7 +86,7 @@ function displayProducts(data) {
                     <li class="list-group-item text-muted ${element.basicPrice ? "" : "hidden" }">Basic Price: <span class="text-danger">${element.basicPrice}</span></spand></li>
                     </ul>
                     <div class="card-footer">
-                    <button class="btn btn-outline-success add-to-cart text-center" type="button">Add to Cart</button>
+                    <button class="btn btn-outline-success add-to-cart text-center" type="button">Add to List</button>
                     </div>
                 </div>
             </div>
@@ -166,14 +166,13 @@ function ready() {
         button.addEventListener('click', addToCartClicked);
     }
 
-    document.getElementsByClassName('btn-purchase')[0].addEventListener('click', purchaseClicked)
+    document.getElementsByClassName('btn-clear')[0].addEventListener('click', clearClicked)
 }
 
-function purchaseClicked() {
+function clearClicked() {
     let cartItems = document.getElementsByClassName('cart-items')[0]
     if (cartItems.firstChild || cartItems.childNodes.length ) {
-        alert('Thank you for your purchase!');
-        
+    
     } else {
         alert('You did not add products yet');
     }
