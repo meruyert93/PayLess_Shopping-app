@@ -101,7 +101,7 @@ function displayProducts(data) {
 function creationOwlCarousel () {
     //Owl Carousel Creation
     $('.owl-carousel').owlCarousel({
-        autoplay: false,
+        autoplay: true,
         autoplayHoverPause: true,
         margin: 10,
         stagePadding: 5,
