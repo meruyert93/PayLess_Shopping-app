@@ -74,19 +74,19 @@ function displayProducts(data) {
     data.docs.forEach(element => {
         htmlRepresentation += `
         <div class="item">
-            <div class="card-group" style="height: 69vh">
-                <div class="card h-100" style="width: 18rem;">
-                    <img src=${element.bild_app} class="card-img-top"  alt="Card image cap">
-                    <div class="card-body scroll h-100">
-                    <h5 class="card-title">${element.titel}</h5>
+            <div class="card-group" style="height: 40rem">
+                <div class="card" style="width: 18rem;">
+                    <img src=${element.bild_app} class="card-img-top cart-item-image"  alt="Card image cap">
+                    <div class="card-body scroll h-50">
+                    <h5 class="card-title product-item-title">${element.titel}</h5>
                     <p class="card-text">${element.beschreibung}</p>
                     </div>
                     <ul class="list-group list-group-flush">
-                    <li class="list-group-item font-weight-bold">Price: <span class="text-danger h4">${element.preis} Euro</span></spand></li>
+                    <li class="list-group-item font-weight-bold">Price: <span class="text-danger h4 product-item-price">${element.preis} Euro</span></spand></li>
                     <li class="list-group-item text-muted ${element.basicPrice ? "" : "hidden" }">Basic Price: <span class="text-danger">${element.basicPrice}</span></spand></li>
                     </ul>
-                    <div class="card-body">
-                    <a href="#" class="card-link">Add to Basket</a>
+                    <div class="card-footer">
+                    <button class="btn btn-outline-success add-to-cart text-center" type="button">Add to List</button>
                     </div>
                 </div>
             </div>
@@ -95,6 +95,7 @@ function displayProducts(data) {
     });
     contentDiv.innerHTML = htmlRepresentation;
     creationOwlCarousel ();
+    ready();
 };
 
 function creationOwlCarousel () {
@@ -137,3 +138,115 @@ function creationOwlCarousel () {
             e.preventDefault();
     });
 };
+
+/**Coding section for Cards */
+if (document.readyState == 'loading') {
+    document.addEventListener('DOMContentLoaded', ready)
+} else {
+    ready();
+}
+
+function ready() {
+    let removerCartItemButtons = document.getElementsByClassName('btn-danger');
+    //console.log(removerCartItemButtons);
+    for (let i = 0; i < removerCartItemButtons.length; i++){
+        let button = removerCartItemButtons[i];
+        button.addEventListener('click', removeCartItem);
+    }
+
+    let quantityInputs = document.getElementsByClassName('cart-quantity-input');
+    for (let i = 0; i < quantityInputs.length; i++) {
+        let input = quantityInputs[i];
+        input.addEventListener('change', quantityChanged);
+    }
+
+    let addToCartButtons = document.getElementsByClassName('add-to-cart')
+    for (let i = 0; i < addToCartButtons.length; i++) {
+        let button = addToCartButtons[i];
+        button.addEventListener('click', addToCartClicked);
+    }
+
+    document.getElementsByClassName('btn-clear')[0].addEventListener('click', clearClicked)
+}
+
+function clearClicked() {
+    let cartItems = document.getElementsByClassName('cart-items')[0]
+    if (cartItems.firstChild || cartItems.childNodes.length ) {
+    
+    } else {
+        alert('You did not add products yet');
+    }
+
+    while ( cartItems.hasChildNodes()) {
+        cartItems.removeChild(cartItems.firstChild);
+    }
+    updateCartTotal();
+}
+
+function removeCartItem(e) {
+    let buttonClicked = e.target
+    buttonClicked.parentElement.parentElement.remove()
+    updateCartTotal();
+}
+
+function quantityChanged(e) {
+    let input = e.target
+    if (isNaN(input.value) || input.value <= 0) {
+        input.value = 1
+    } 
+    updateCartTotal();
+}
+
+function addToCartClicked(e) {
+    let button = e.target;
+    let productItem = button.parentElement.parentElement.parentElement.parentElement;
+    let title = productItem.getElementsByClassName('product-item-title')[0].innerText;
+    let price = productItem.getElementsByClassName('product-item-price')[0].innerText;
+    let imageSrc = productItem.getElementsByClassName('cart-item-image')[0].src
+    console.log(title, price, imageSrc);
+    addItemToCart(title, price, imageSrc);
+    updateCartTotal();
+}
+
+function addItemToCart(title, price, imageSrc) {
+    let cartRow = document.createElement('div');
+    cartRow.classList.add('cart-row')
+    let cartItems = document.getElementsByClassName('cart-items')[0]
+    let cartItemNames = cartItems.getElementsByClassName('cart-item-title')
+    for  (let i = 0; i < cartItemNames.length; i++) {
+        if (cartItemNames[i].innerText == title) {
+            alert('This item is already added to the cart')
+            return; 
+        }
+    }
+    let cartRowContents = `                           
+        <div class="cart-item cart-column">
+            <img class="cart-item-image" src="${imageSrc}" width="100" height="100">
+            <span class="cart-item-title">${title}</span>
+        </div>
+        <span class="cart-price cart-column">${price}</span>
+        <div class="cart-quantity cart-column">
+            <input class="cart-quantity-input" type="number" value="1">
+            <button class="btn btn-danger" type="button">REMOVE</button>
+        </div>`
+        cartRow.innerHTML = cartRowContents;
+    cartItems.append(cartRow)
+    cartRow.getElementsByClassName('btn-danger')[0].addEventListener('click', removeCartItem );
+    cartRow.getElementsByClassName('cart-quantity-input')[0].addEventListener('change', quantityChanged);
+}
+
+function updateCartTotal() {
+    let cartItemContainer = document.getElementsByClassName('cart-items')[0]
+    let cartRows = cartItemContainer.getElementsByClassName('cart-row')
+    let total = 0;
+    for (let i = 0; i<cartRows.length; i++) {
+        let cartRow = cartRows[i]
+        let priceElement = cartRow.getElementsByClassName('cart-price')[0]
+        let quantityElement = cartRow.getElementsByClassName('cart-quantity-input')[0]
+        let price = parseFloat(priceElement.innerText.replace('Euro', ''));
+        let quantity = quantityElement.value
+        total = total + (price *quantity)
+    }
+    total = Math.round(total*100) / 100;
+    document.getElementsByClassName('cart-total-price')[0].innerText = total + ' Euro';
+}
